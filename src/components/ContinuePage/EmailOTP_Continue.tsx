@@ -29,7 +29,7 @@ import OtpInput from "react-otp-input";
 import { chevronBackOutline } from "ionicons/icons";
 import client from "../../client";
 import useSetup from "../../hooks/setup/useSetup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MaskEmail from "../../utils/MaskEmail";
 import testEmails from "../../constants/allowedTestEmails";
@@ -38,6 +38,8 @@ import { User, Session } from "@supabase/supabase-js";
 import { useAtom } from "jotai";
 import { disableAuthWrapper } from "../../atoms/setup";
 import useFeatureFlags from "../../hooks/useFeatureFlags";
+import { Keyboard } from '@capacitor/keyboard';
+import { Capacitor } from "@capacitor/core";
 
 const EmailOTP_Continue = (props: {
   open: boolean;
@@ -223,6 +225,23 @@ const EmailOTP_Continue = (props: {
     }
   };
 
+  const [keyboard, setKeyboard] = useState(false);
+
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      Keyboard.addListener('keyboardWillShow', () => {
+        setKeyboard(true);
+      });
+      Keyboard.addListener('keyboardWillHide', () => {
+        setKeyboard(false);
+      });
+      return () => {
+        Keyboard.removeAllListeners();
+      }
+    }
+
+  }, []);
+
   return (
     <IonModal
       onDidDismiss={() => props.setOpen(false)}
@@ -247,7 +266,7 @@ const EmailOTP_Continue = (props: {
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className={`ion-padding ${keyboard ? "pb-20" : ""}`}>
         {state === EmailOTP_Continue_Enum.InputEmail && (
           <IonGrid>
             <IonRow>

@@ -21,6 +21,7 @@ import useSelfStudent from "../../hooks/student";
 import { FC } from "react";
 import { RouteComponentProps } from "react-router";
 import useStudentGroups from "../../hooks/student/useStudentGroups";
+import { Virtuoso } from "react-virtuoso";
 
 const MeGroups: FC<RouteComponentProps> = ({ match }) => {
   const { student, groups } = useSelfStudent();
@@ -44,15 +45,18 @@ const MeGroups: FC<RouteComponentProps> = ({ match }) => {
             <IonTitle>Your Groups ({groups?.length ?? "-"})</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonList className="rounded-xl">
-          {/* @ts-ignore */}
-          {groups?.map((group) =>
+        <Virtuoso
+          className="rounded-xl"
+          data={groups || []}
+          style={{ height: "92%" }}
+          totalCount={groups?.length || 0}
+          itemContent={(i, group) => (
             <GroupItem
               group={group}
               key={group.id}
             />
           )}
-        </IonList>
+        />
       </IonContent>
     </IonPage>
   );

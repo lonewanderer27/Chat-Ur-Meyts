@@ -21,6 +21,7 @@ import StudentItem from "../../components/SearchPage/StudentItem";
 import useSelfStudent from "../../hooks/student";
 import { FC } from "react";
 import { RouteComponentProps } from "react-router";
+import { Virtuoso } from "react-virtuoso";
 
 const MeFollowing: FC<RouteComponentProps> = () => {
   const { following } = useSelfStudent();
@@ -43,11 +44,18 @@ const MeFollowing: FC<RouteComponentProps> = () => {
             <IonTitle>Your Following ({following?.length ?? "-"})</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonList className="rounded-xl">
-          {following?.map((klasmeyt) => (
-            <StudentItem student={klasmeyt} key={klasmeyt.id} />
-          ))}
-        </IonList>
+        <Virtuoso
+          className="rounded-xl"
+          data={following || []}
+          style={{ height: "92%" }}
+          totalCount={following?.length || 0}
+          itemContent={(i, student) => (
+            <StudentItem
+              student={student}
+              key={student.id}
+            />
+          )}
+        />
       </IonContent>
     </IonPage>
   );

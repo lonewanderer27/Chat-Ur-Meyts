@@ -21,6 +21,7 @@ import useGroupMembers from "../../../hooks/group/useGroupMembers";
 import useGroupMemsCount from "../../../hooks/group/useGroupMemsCount";
 import { shareOutline } from "ionicons/icons";
 import useSelfStudent from "../../../hooks/student";
+import { Virtuoso } from 'react-virtuoso';
 
 type GroupMembersPageProps = {
   vanity_url: string;
@@ -52,15 +53,18 @@ const GroupMembers: FC<RouteComponentProps<GroupMembersPageProps>> = ({
             <IonTitle>Group Members ({count})</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonList className="rounded-xl">
-          {data?.map((member) => {
+        <Virtuoso
+          className="rounded-xl"
+          data={data || []}
+          style={{ height: "92%" }}
+          totalCount={data?.length || 0}
+          itemContent={(i, member) => {
             const klasmeyt = member.students;
-            if (klasmeyt!.id === meStudent!.id) {
-              return <StudentItem student={klasmeyt!} key={klasmeyt!.id} me />;
-            }
-            return <StudentItem student={klasmeyt!} key={klasmeyt!.id} />;
-          })}
-        </IonList>
+            return <div className="h-[60px]">
+              <StudentItem student={klasmeyt!} key={klasmeyt!.id} me={klasmeyt!.id === meStudent!.id} />
+            </div>;
+          }}
+        />
       </IonContent>
     </IonPage>
   );

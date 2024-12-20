@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode web",
-    "build": "tsc && vite build --mode web",
+    "dev": "vite",
+    "build": "tsc && vite",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
@@ -52,6 +52,7 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-slick": "^0.30.2",
+    "react-virtuoso": "^4.12.3",
     "slick-carousel": "^1.8.1",
     "string": "^3.3.3",
     "swiper": "^11.1.1",

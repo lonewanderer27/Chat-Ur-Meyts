@@ -93,6 +93,8 @@ const MeUpdate: FC<RouteComponentProps> = ({ match }) => {
                   onIonChange={onChange}
                   onIonBlur={onBlur}
                   errorText={error?.message}
+                  helperText="You must upload an updated Certificate of Enrollment to update your full name."
+                  readonly
                 />
               )}
               name="fullName"

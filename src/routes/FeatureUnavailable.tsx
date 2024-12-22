@@ -6,24 +6,24 @@ import {
   IonPage,
   IonText,
   useIonRouter,
-  useIonViewWillEnter,
 } from "@ionic/react";
 import { timeOutline, homeOutline } from "ionicons/icons";
 import { FC } from "react";
 import { RouteComponentProps } from "react-router";
-import { hideTabBar } from "../utils/TabBar";
-import useHideTabs from "../hooks/useHideTabs";
 
 const FeatureUnavailable: FC<RouteComponentProps> = () => {
-  useHideTabs();
-  const history = useIonRouter();
+  const rt = useIonRouter();
 
   const handleGoHome = () => {
-    history.push("/", "root", "replace");
+    if (rt.canGoBack()) {
+      rt.goBack();
+    } else {
+      rt.push("/", "root", "replace");
+    }
   };
 
   const handleNotice = () => {
-    history.push("/inbox#notice");
+    rt.push("/inbox#notice");
   };
 
   return (

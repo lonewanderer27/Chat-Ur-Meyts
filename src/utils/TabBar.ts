@@ -7,9 +7,6 @@ export const hideTabBar = (): void => {
 
     const animation = createAnimation()
       .addElement(tabBar)
-      .duration(500)
-      .easing("ease-in")
-      .fromTo('transform', 'translateY(0)', 'translateY(100%)')
       .onFinish(() => {
         tabBar.style.display = 'none';
       });
@@ -27,8 +24,9 @@ export const showTabBar = (): void => {
     const animation = createAnimation()
       .addElement(tabBar)
       .duration(500)
-      .easing("ease-in")
-      .fromTo('transform', 'translateY(100%)', 'translateY(0)');
+      .easing("ease-in-out")
+      .fromTo('transform', 'translateY(100%)', 'translateY(0)')
+      .fromTo('opacity', '0', '1');
 
     animation.play();
   }

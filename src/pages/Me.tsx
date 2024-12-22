@@ -33,8 +33,13 @@ import useSelfHobbies from "../hooks/student/useSelfHobbies";
 import useSelfSubjects from "../hooks/student/useSelfSubjects";
 import string from "string";
 import MeLoaderCard from "../components/Me/MeLoaderCard";
+import { hideTabBar } from "../utils/TabBar";
 
 const Me: FC<RouteComponentProps> = () => {
+  useIonViewWillEnter(() => {
+    hideTabBar();
+  });
+
   const rt = useIonRouter();
   const { student, query: studentQuery } = useSelfStudentLite();
   const { hobbies, query: hobbiesQuery } = useSelfHobbies();

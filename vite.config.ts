@@ -5,7 +5,7 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const isWeb = mode === "web";
+  const isCapacitor = mode === "cap";
 
   return {
     plugins: [
@@ -48,7 +48,8 @@ export default defineConfig(({ mode }) => {
           theme_color: "#0080c9",
         },
         workbox: {
-          runtimeCaching: isWeb
+          maximumFileSizeToCacheInBytes: 5 * 1024 ** 2, // 5 MB
+          runtimeCaching: !isCapacitor
             ? [
                 // Match video files
                 {

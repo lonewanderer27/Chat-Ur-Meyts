@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import client from "../../client";
-import { GroupType } from "../../types";
 
 const useStudentGroups2 = (studentId: string) => {
   const query = useQuery({
@@ -11,6 +10,7 @@ const useStudentGroups2 = (studentId: string) => {
       .from("group_members")
       .select("*, group:group_id(*)")
       .eq("student_id", studentId)
+      .order("created_at", { ascending: false });
       console.log("groups_members data: ", res.data);
 
       // Get the group data

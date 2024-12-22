@@ -18,6 +18,7 @@ const useStudentFollowings = (studentId: string) => {
         .from("students")
         .select("*", { count: "exact" })
         .in("id", followingRes!.data!.map((f) => f.following_id))
+        .order("created_at", { ascending: false })
 
       return students.data
     }

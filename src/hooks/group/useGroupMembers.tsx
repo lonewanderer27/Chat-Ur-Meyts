@@ -24,9 +24,10 @@ export default function useGroupMembers(vanity_url?: string, approved?: boolean)
       // Fetch the group members using the group_id
       const memberRes = await client
         .from("group_members")
-        .select("*, students(*)")
+        .select("*, student:students(*)")
         .eq("group_id", group_id)
-        .eq("approved", approved ? true : false);
+        .eq("approved", approved ? true : false)
+        .order("created_at", { ascending: false });
 
       return memberRes.data;
     },

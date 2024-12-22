@@ -12,7 +12,8 @@ const useSelfFollowing = () => {
       const res = await client
         .from("student_followers")
         .select("*, student:students!student_followers_following_id_fkey(*)")
-        .eq("follower_id", student!.id);
+        .eq("follower_id", student!.id)
+        .order("created_at", { ascending: false });
 
       // extract the student profiles from the followings
       const students = res.data!.map((followings) => followings.student);

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import client from '../../client';
 
 const useSelfGroups = () => {
-  const { student, profile } = useSelfStudentLite();
+  const { student } = useSelfStudentLite();
 
   const groupMembersQuery = useQuery({
     queryKey: ["student", student?.id, "group_members"],
@@ -11,7 +11,8 @@ const useSelfGroups = () => {
       const res = await client
       .from("group_members")
       .select("*")
-      .eq("student_id", student!.id);
+      .eq("student_id", student!.id)
+      .order("created_at", { ascending: false });
 
       return res.data;
     },
@@ -27,7 +28,7 @@ const useSelfGroups = () => {
       .in(
         "id",
         groupMembersQuery.data!.map((groupMember) => groupMember.group_id)
-      ).eq("admin_uni_group", false);
+      ).eq("admin_uni_group", false)
 
       return res.data;
     },

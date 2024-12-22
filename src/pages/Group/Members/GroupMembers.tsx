@@ -27,7 +27,6 @@ const GroupMembers: FC<RouteComponentProps<GroupMembersPageProps>> = ({
 }) => {
   const { student: meStudent } = useSelfStudentLite();
   const { data } = useGroupMembers(match.params.vanity_url, true);
-  const { data: count } = useGroupMemsCount(match.params.vanity_url);
 
   useIonViewWillEnter(() => {
     hideTabBar();
@@ -45,7 +44,7 @@ const GroupMembers: FC<RouteComponentProps<GroupMembersPageProps>> = ({
                 text={""}
               />
             </IonButtons>
-            <IonTitle>Group Members ({count})</IonTitle>
+            <IonTitle>Group Members ({data?.length})</IonTitle>
           </IonToolbar>
         </IonHeader>
         <Virtuoso
@@ -54,7 +53,7 @@ const GroupMembers: FC<RouteComponentProps<GroupMembersPageProps>> = ({
           style={{ height: "92%" }}
           totalCount={data?.length || 0}
           itemContent={(i, member) => {
-            const klasmeyt = member.students;
+            const klasmeyt = member.student;
             return <div className="h-[60px]">
               <StudentItem student={klasmeyt!} key={klasmeyt!.id} me={klasmeyt!.id === meStudent!.id} />
             </div>;

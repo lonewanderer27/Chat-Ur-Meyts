@@ -2,22 +2,19 @@ import {
   IonBackButton,
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
   IonCol,
   IonContent,
   IonFooter,
   IonGrid,
   IonHeader,
-  IonIcon,
   IonInput,
+  IonItem,
   IonLabel,
+  IonList,
   IonPage,
   IonRow,
   IonSpinner,
   IonText,
-  IonTextarea,
-  IonTitle,
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
@@ -27,7 +24,6 @@ import { object, string } from "yup";
 
 import { NewGroupInputs } from "../../../types/group/NewGroup";
 import { RouteComponentProps } from "react-router";
-import client from "../../../client";
 import { newGroupAtom } from "../../../atoms/group";
 import { useAtom } from "jotai";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -79,7 +75,7 @@ const CreateGroupP2: React.FC<RouteComponentProps> = ({ match }) => {
       };
     });
 
-    rt.push("/" + match.path.split("/")[1] + "/group/create/p3", "forward");
+    rt.push("/group/create/p3", "forward");
   };
 
   return (
@@ -93,7 +89,6 @@ const CreateGroupP2: React.FC<RouteComponentProps> = ({ match }) => {
                 defaultHref={match.path.split("/")[1] + "/groups/create/p1"}
               />
             </IonButtons>
-            {/* <IonTitle>Customize {newGroup.step1.name}</IonTitle> */}
           </IonToolbar>
         </IonHeader>
         <IonGrid>
@@ -104,57 +99,52 @@ const CreateGroupP2: React.FC<RouteComponentProps> = ({ match }) => {
               </IonText>
             </IonCol>
           </IonRow>
-          <IonRow>
-            <IonCol>
+          <IonList className="rounded-xl">
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
-                  Avatar
+                  Profile Photo Link
                 </IonText>
               </IonLabel>
+            </IonItem>
+            <IonItem lines="full">
               <IonInput
-                className={`custom my-2 text-lg ${
+                className={`my-2 text-lg ${
                   getFieldState("avatar_url").isTouched ? "ion-touched" : ""
                 } ${
                   errors.avatar_url
                     ? "ion-touched ion-invalid border-red-500"
                     : ""
                 }`}
-                placeholder={`Enter Profile Photo URL`}
+                placeholder="Enter Profile Photo URL"
                 type="text"
                 errorText={getFieldState("avatar_url").error?.message}
                 {...register("avatar_url")}
-              ></IonInput>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
+              />
+            </IonItem>
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
-                  Cover URL
+                  Cover Photo Link
                 </IonText>
               </IonLabel>
+            </IonItem>
+            <IonItem lines="full">
               <IonInput
-                className={`custom my-2 text-lg ${
+                className={`my-2 text-lg ${
                   getFieldState("cover_url").isTouched ? "ion-touched" : ""
                 } ${
                   errors.cover_url
                     ? "ion-touched ion-invalid border-red-500"
                     : ""
                 }`}
-                placeholder={`Enter Cover Photo URL`}
+                placeholder="Enter Cover Photo URL"
                 errorText={getFieldState("cover_url").error?.message}
                 {...register("cover_url")}
-              ></IonInput>
-            </IonCol>
-          </IonRow>
+              />
+            </IonItem>
+          </IonList>
         </IonGrid>
-        {/* <div className="m-[-5px]">
-          <IonCard>
-            <IonCardContent>
-              This will serve as {newGroup.step1.name}'s Invite ID
-            </IonCardContent>
-          </IonCard>
-        </div> */}
       </IonContent>
       <IonFooter>
         <IonToolbar className="p-4">

@@ -8,7 +8,9 @@ import {
   IonFooter,
   IonGrid,
   IonHeader,
+  IonItem,
   IonLabel,
+  IonList,
   IonNote,
   IonPage,
   IonRow,
@@ -184,181 +186,163 @@ const CreateGroupP3: React.FC<RouteComponentProps> = ({ match }) => {
               </IonText>
             </IonCol>
           </IonRow>
-          {/* <IonRow>
-            <IonCol>
+          <IonList className="rounded-xl">
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
                   School
                 </IonText>
               </IonLabel>
-              <div className="my-2">
-                <Controller
-                  render={({ field }) => (
-                    <IonSelect
-                      label="Select School"
-                      labelPlacement="start"
-                      fill="outline"
-                      interfaceOptions={{
-                        header: "Select school",
-                      }}
-                      className={`font-poppins`}
-                      value={field.value}
-                      onIonChange={(e) => setValue("school", e.detail.value)}
-                    >
-                      <IonSelectOption value={1}>
-                        Adamson University
+            </IonItem>
+            <IonItem lines="full">
+              <Controller
+                render={({ field }) => (
+                  <IonSelect
+                    label="Select College"
+                    labelPlacement="start"
+                    fill="outline"
+                    interfaceOptions={{
+                      header: "Select college ",
+                    }}
+                    className={`font-poppins`}
+                    value={field.value}
+                    onIonChange={(e) => setValue("college", e.detail.value)}
+                  >
+                    {colleges?.map((college) => (
+                      <IonSelectOption
+                        key={"college:" + college.id}
+                        value={college.id}
+                      >
+                        {college.title}
                       </IonSelectOption>
-                    </IonSelect>
-                  )}
-                  control={control}
-                  name="school"
-                />
-              </div>
-            </IonCol>
-          </IonRow> */}
-          <IonRow>
-            <IonCol>
-              <IonLabel>
-                <IonText className="font-poppins font-semibold text-lg">
-                  College
-                </IonText>
-              </IonLabel>
-              <div className="my-2">
-                <Controller
-                  render={({ field }) => (
-                    <IonSelect
-                      label="Select College"
-                      labelPlacement="start"
-                      fill="outline"
-                      interfaceOptions={{
-                        header: "Select college ",
-                      }}
-                      className={`font-poppins`}
-                      value={field.value}
-                      onIonChange={(e) => setValue("college", e.detail.value)}
-                    >
-                      {colleges?.map((college) => (
-                        <IonSelectOption
-                          key={"college:" + college.id}
-                          value={college.id}
-                        >
-                          {college.title}
-                        </IonSelectOption>
-                      ))}
-                    </IonSelect>
-                  )}
-                  control={control}
-                  name="college"
-                />
-                {errors.college && (
-                  <IonNote class="ion-invalid">
-                    {getFieldState("college").error?.message}
-                  </IonNote>
+                    ))}
+                  </IonSelect>
                 )}
-              </div>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
+                control={control}
+                name="college"
+              />
+              {errors.college && (
+                <IonNote class="ion-invalid">
+                  {getFieldState("college").error?.message}
+                </IonNote>
+              )}
+            </IonItem>
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
                   Course
                 </IonText>
               </IonLabel>
-              <div className="my-2">
-                <Controller
-                  render={({ field }) => (
-                    <IonSelect
-                      label="Select Course"
-                      labelPlacement="start"
-                      fill="outline"
-                      interfaceOptions={{
-                        header: "Select the course",
-                      }}
-                      // className={`font-poppins`}
-                      value={field.value}
-                      onIonChange={(e) => setValue("course", e.detail.value)}
-                    >
-                      {courses?.map((course) => (
-                        <IonSelectOption
-                          key={"course:" + course.id}
-                          value={course.id}
-                        >
-                          {course.title}
-                        </IonSelectOption>
-                      ))}
-                    </IonSelect>
-                  )}
-                  control={control}
-                  name="course"
-                />
-              </div>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
+            </IonItem>
+            <IonItem lines="full">
+              <Controller
+                render={({ field }) => (
+                  <IonSelect
+                    label="Select Course"
+                    labelPlacement="start"
+                    fill="outline"
+                    interfaceOptions={{
+                      header: "Select course",
+                    }}
+                    className={`font-poppins`}
+                    value={field.value}
+                    onIonChange={(e) => setValue("course", e.detail.value)}
+                  >
+                    {courses?.map((course) => (
+                      <IonSelectOption
+                        key={"course:" + course.id}
+                        value={course.id}
+                      >
+                        {course.title}
+                      </IonSelectOption>
+                    ))}
+                  </IonSelect>
+                )}
+                control={control}
+                name="course"
+              />
+              {errors.course && (
+                <IonNote class="ion-invalid">
+                  {getFieldState("course").error?.message}
+                </IonNote>
+              )}
+            </IonItem>
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
                   Semester
                 </IonText>
               </IonLabel>
-              <div className="my-2">
-                <IonSelect
-                  label="Select Semester"
-                  labelPlacement="start"
-                  fill="outline"
-                  interface="action-sheet"
-                  interfaceOptions={{
-                    header: "Select the semester",
-                  }}
-                  className={`font-poppins`}
-                  {...register("semester")}
-                >
-                  <IonSelectOption value={1}>1st Semester</IonSelectOption>
-                  <IonSelectOption value={2}>2nd Semester</IonSelectOption>
-                </IonSelect>
-              </div>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
+            </IonItem>
+            <IonItem lines="full">
+              <Controller
+                render={({ field }) => (
+                  <IonSelect
+                    label="Select Semester"
+                    labelPlacement="start"
+                    fill="outline"
+                    interface="action-sheet"
+                    interfaceOptions={{
+                      header: "Select the semester",
+                    }}
+                    className={`font-poppins`}
+                    value={field.value}
+                    onIonChange={(e) => setValue("semester", e.detail.value)}
+                  >
+                    <IonSelectOption value={1}>1st Semester</IonSelectOption>
+                    <IonSelectOption value={2}>2nd Semester</IonSelectOption>
+                  </IonSelect>
+                )}
+                control={control}
+                name="semester"
+              />
+              {errors.semester && (
+                <IonNote class="ion-invalid">
+                  {getFieldState("semester").error?.message}
+                </IonNote>
+              )}
+            </IonItem>
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
                   Academic Year
                 </IonText>
               </IonLabel>
-              <div className="my-2">
-                <Controller
-                  render={({ field }) => (
-                    <IonSelect
-                      label="Select A.Y."
-                      labelPlacement="start"
-                      fill="outline"
-                      interfaceOptions={{
-                        header: "Select the academic year",
-                      }}
-                      value={field.value}
-                      interface="action-sheet"
-                      onIonChange={(e) =>
-                        setValue("academic_year_id", e.detail.value)
-                      }
-                    >
-                      {academicYears?.map((academicYear, index) => (
-                        <IonSelectOption
-                          key={"academicYear:" + academicYear.id + index}
-                          value={academicYear.id}
-                        >
-                          {academicYear.academic_year}
-                        </IonSelectOption>
-                      ))}
-                    </IonSelect>
-                  )}
-                  control={control}
-                  name="academic_year_id"
-                />
-              </div>
-            </IonCol>
-          </IonRow>
+            </IonItem>
+            <IonItem lines="full">
+              <Controller
+                render={({ field }) => (
+                  <IonSelect
+                    label="Select A.Y."
+                    labelPlacement="start"
+                    fill="outline"
+                    interfaceOptions={{
+                      header: "Select the academic year",
+                    }}
+                    value={field.value}
+                    interface="action-sheet"
+                    onIonChange={(e) => setValue("academic_year_id", e.detail.value)}
+                  >
+                    {academicYears?.map((academicYear, index) => (
+                      <IonSelectOption
+                        key={"academicYear:" + academicYear.id + index}
+                        value={academicYear.id}
+                      >
+                        {academicYear.academic_year}
+                      </IonSelectOption>
+                    ))}
+                  </IonSelect>
+                )}
+                control={control}
+                name="academic_year_id"
+              />
+              {errors.academic_year_id && (
+                <IonNote class="ion-invalid">
+                  {getFieldState("academic_year_id").error?.message}
+                </IonNote>
+              )}
+            </IonItem>
+          </IonList>
         </IonGrid>
       </IonContent>
       <IonFooter>

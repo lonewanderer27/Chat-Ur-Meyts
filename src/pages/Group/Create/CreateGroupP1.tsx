@@ -2,29 +2,23 @@ import {
   IonBackButton,
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
   IonCol,
   IonContent,
   IonFooter,
   IonGrid,
   IonHeader,
-  IonIcon,
   IonInput,
   IonItem,
   IonLabel,
+  IonList,
   IonPage,
   IonRow,
-  IonSelect,
-  IonSelectOption,
   IonSpinner,
   IonText,
   IonTextarea,
-  IonTitle,
   IonToolbar,
   useIonAlert,
   useIonRouter,
-  useIonViewDidEnter,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
@@ -154,7 +148,7 @@ const CreateGroupP1: React.FC<RouteComponentProps> = ({ match }) => {
     }
 
     // there's no group, that means the vanity url is unique
-    rt.push("/" + match.path.split("/")[1] + "/group/create/p2", "forward");
+    rt.push("/group/create/p2", "forward");
   };
 
   return (
@@ -179,91 +173,65 @@ const CreateGroupP1: React.FC<RouteComponentProps> = ({ match }) => {
               </IonText>
             </IonCol>
           </IonRow>
-          <IonRow>
-            <IonCol>
+          <IonList className="rounded-xl">
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
-                  Name
+                  Group Name
                 </IonText>
               </IonLabel>
+            </IonItem>
+            <IonItem lines="full">
               <IonInput
-                className={`custom my-2 text-lg ${
-                  getFieldState("name").isTouched ? "ion-touched" : ""
-                } ${
-                  errors.name ? "ion-touched ion-invalid border-red-500" : ""
-                }`}
+                className={`my-2 text-lg ${getFieldState("name").isTouched ? "ion-touched" : ""
+                  } ${errors.name ? "ion-touched ion-invalid border-red-500" : ""
+                  }`}
                 placeholder="Name of your group"
                 type="text"
                 errorText={getFieldState("name").error?.message}
                 {...register("name")}
-              ></IonInput>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
+              />
+            </IonItem>
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
                   Description
                 </IonText>
               </IonLabel>
+            </IonItem>
+            <IonItem lines="full">
               <IonTextarea
                 autoGrow={true}
-                className={`custom my-2 text-lg ${
-                  getFieldState("name").isTouched ? "ion-touched" : ""
-                } ${
-                  errors.description
-                    ? "ion-touched ion-invalid border-red-500"
-                    : ""
-                }`}
+                className={`my-2 text-lg ${getFieldState("description").isTouched ? "ion-touched" : ""
+                  } ${errors.description ? "ion-touched ion-invalid border-red-500" : ""
+                  }`}
                 errorText={getFieldState("description").error?.message}
                 placeholder="Description of your group"
                 {...register("description")}
-              ></IonTextarea>
-            </IonCol>
-          </IonRow>
-          <IonRow className="pt-5">
-            <IonCol>
+              />
+            </IonItem>
+            <IonItem lines="none" className="mb-[-10px]">
               <IonLabel>
                 <IonText className="font-poppins font-semibold text-lg">
                   Vanity ID
                 </IonText>
               </IonLabel>
+            </IonItem>
+            <IonItem lines="none" className="mb-[-15px]">
               <IonInput
-                className={`custom my-2 text-lg ${
-                  getFieldState("vanity_id").isTouched ? "ion-touched" : ""
-                } ${
-                  errors.vanity_id
-                    ? "ion-touched ion-invalid border-red-500"
-                    : ""
-                }`}
-                placeholder={`Enter Vanity ID`}
+                className={`my-2 text-lg ${getFieldState("vanity_id").isTouched ? "ion-touched" : ""
+                  } ${errors.vanity_id ? "ion-touched ion-invalid border-red-500" : ""
+                  }`}
+                placeholder="Enter Vanity ID"
                 errorText={getFieldState("vanity_id").error?.message}
                 {...register("vanity_id")}
-              ></IonInput>
-            </IonCol>
-          </IonRow>
+              />
+            </IonItem>
+            <IonItem lines="full">
+              <IonLabel color="medium">This will serve as your group's Invite ID</IonLabel>
+            </IonItem>
+          </IonList>
         </IonGrid>
-        <div className="m-[-5px] mt-[-20px]">
-          <IonCard>
-            <IonCardContent>
-              This will serve as your group's Invite ID
-            </IonCardContent>
-          </IonCard>
-        </div>
-        {/* <div className="m-[-5px]">
-          <IonCard>
-            <IonCardContent>
-              <IonText>Anyone can see who's in the group.</IonText>
-            </IonCardContent>
-          </IonCard>
-          <IonCard className="mt-0">
-            <IonCardContent>
-              <IonText>
-                Posts of the group can only be seen by approved members.
-              </IonText>
-            </IonCardContent>
-          </IonCard>
-        </div> */}
       </IonContent>
       <IonFooter>
         <IonToolbar className="p-4 flex justify-end">

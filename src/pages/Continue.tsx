@@ -74,7 +74,7 @@ export default function Continue() {
       </IonContent>
       <IonFooter className="ion-padding text-center">
         <div className="mb-32">
-          <IonButton expand="block" fill="outline" color="light" onClick={handleContinue} shape="round">
+          <IonButton expand="block" color='light' onClick={handleContinue} shape="round">
             Continue with Email
             <IonIcon slot="start" src={mailOutline} />
           </IonButton>

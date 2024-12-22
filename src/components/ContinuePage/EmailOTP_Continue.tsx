@@ -296,13 +296,15 @@ const EmailOTP_Continue = (props: {
               </IonCol>
             </IonRow>
             <IonRow className="mt-4">
-              <IonCol size="12" className="flex justify-end">
+              <IonCol size="6"/>
+              <IonCol size="6">
                 <IonButton
+                  expand="full"
                   shape="round"
                   disabled={processing}
                   onClick={handleSubmit(handleEmailOTPSuccess, handleError)}
                 >
-                  {processing ? <IonSpinner name="dots" /> : "Next"}
+                  {processing ? <IonSpinner name="crescent" className="mr-2 h-5" /> : ""} Next
                 </IonButton>
               </IonCol>
             </IonRow>

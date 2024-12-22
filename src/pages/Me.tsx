@@ -18,7 +18,8 @@ import {
   IonToolbar,
   useIonRouter,
   useIonViewWillEnter,
-  createAnimation, // Import createAnimation
+  createAnimation,
+  useIonAlert, // Import createAnimation
 } from "@ionic/react";
 
 import { FC, useEffect, useRef } from "react";
@@ -45,7 +46,28 @@ const Me: FC<RouteComponentProps> = () => {
   const { hobbies, query: hobbiesQuery } = useSelfHobbies();
   const { subjects, query: subjectsQuery } = useSelfSubjects();
 
+  const [alert, dismiss] = useIonAlert();
   const { logout } = useSession();
+  const handleLogout = () => {
+    // confirm if the user wants to logout
+    alert({
+      header: "Logout",
+      message: "Are you sure you want to logout?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: dismiss
+        },
+        {
+          text: "Confirm",
+          role: "destructive",
+          handler: logout
+        },
+      ],
+    });
+  }
 
   const { data: groups } = useSelfGroups();
   const { data: following } = useSelfFollowing();
@@ -308,7 +330,7 @@ const Me: FC<RouteComponentProps> = () => {
             <MeLoaderCard />
           </div>
         )}
-        <IonButton color="danger" expand="block" onClick={logout}>
+        <IonButton color="danger" expand="block" onClick={handleLogout}>
           <IonLabel>Logout</IonLabel>
         </IonButton>
       </IonContent>

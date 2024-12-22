@@ -52,11 +52,10 @@ import { SortOptions } from "../../enums";
 import client from "../../client";
 import useHideTabs from "../../hooks/useHideTabs";
 import { useQuery } from "@tanstack/react-query";
-import useSelfStudent from "../../hooks/student";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Share } from "@capacitor/share";
-import { Clipboard } from '@capacitor/clipboard';
 import { Capacitor } from "@capacitor/core";
+import useSelfStudentLite from "../../hooks/student/useSelfStudentLite";
 
 type GroupPostPageParams = {
   vanity_url: string;
@@ -166,7 +165,7 @@ const GroupPostPage: FC<RouteComponentProps<GroupPostPageParams>> = ({
     ),
   });
 
-  const { student, profile } = useSelfStudent();
+  const { student, profile } = useSelfStudentLite();
   const handlePostComment: SubmitHandler<{ comment: string }> = async (
     data
   ) => {

@@ -2,9 +2,10 @@ import React from 'react'
 import useSelfStudent from '../student'
 import { useQuery } from '@tanstack/react-query';
 import client from '../../client';
+import useSelfStudentLite from '../student/useSelfStudentLite';
 
 const useMeGroups = () => {
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
 
   const query = useQuery({
     queryKey: ['me-admin-groups', student?.id],

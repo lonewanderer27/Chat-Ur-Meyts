@@ -1,15 +1,13 @@
-import { IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonToolbar } from '@ionic/react'
-import { notificationsOutline, personOutline, searchOutline, accessibilityOutline, personCircleOutline } from 'ionicons/icons'
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar } from '@ionic/react'
+import { notificationsOutline, searchOutline, personCircleOutline } from 'ionicons/icons'
 
 import NavBtn from '../components/NavBtn'
 import Sidebar from '../components/Sidebar'
-import { showTabBar } from '../utils/TabBar'
-import useSelfStudent from '../hooks/student'
-import useSession from '../hooks/auth/useSession'
 import useHideTabs from '../hooks/useHideTabs'
+import useSelfStudentLite from '../hooks/student/useSelfStudentLite'
 
 export default function Community() {
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
   useHideTabs();
 
   return (

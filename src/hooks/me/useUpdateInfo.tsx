@@ -4,14 +4,14 @@ import { UpdateProfileInputs } from "../../types/me";
 import client from "../../client";
 import { qClient } from "../../App";
 import {useIonAlert, useIonRouter} from "@ionic/react";
-import useSelfStudent from "../student";
 import {useState} from "react";
+import useSelfStudentLite from "../student/useSelfStudentLite";
 
 export default function useUpdateInfo() {
   const rt = useIonRouter();
   const [show] = useIonAlert();
   const [saving, setSaving] = useState(() => false);
-  const {student} = useSelfStudent();
+  const { student } = useSelfStudentLite();
 
   const form = useForm<UpdateProfileInputs>({
     defaultValues: {

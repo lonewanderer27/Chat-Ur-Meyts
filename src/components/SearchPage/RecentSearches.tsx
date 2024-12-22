@@ -5,12 +5,13 @@ import RecentSearchItem from './RecentSearchItem';
 import { SearchHistoryType } from '../../types'
 import useSelfStudent from '../../hooks/student';
 import RecentSearchItemLoader from '../../loaders/RecentSearchItemLoader';
+import useSelfStudentLite from '../../hooks/student/useSelfStudentLite';
 
 const RecentSearches = (props: {
   searchHistory?: SearchHistoryType[];
   isLoading?: boolean;
 }) => {
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
 
   if (props.searchHistory?.length === 0) {
     return <></>

@@ -1,12 +1,8 @@
 import {
   IonBackButton,
-  IonButton,
   IonButtons,
   IonContent,
-  IonGrid,
   IonHeader,
-  IonIcon,
-  IonList,
   IonPage,
   IonTitle,
   IonToolbar,
@@ -19,9 +15,8 @@ import StudentItem from "../../../components/SearchPage/StudentItem";
 import { hideTabBar } from "../../../utils/TabBar";
 import useGroupMembers from "../../../hooks/group/useGroupMembers";
 import useGroupMemsCount from "../../../hooks/group/useGroupMemsCount";
-import { shareOutline } from "ionicons/icons";
-import useSelfStudent from "../../../hooks/student";
 import { Virtuoso } from 'react-virtuoso';
+import useSelfStudentLite from "../../../hooks/student/useSelfStudentLite";
 
 type GroupMembersPageProps = {
   vanity_url: string;
@@ -30,7 +25,7 @@ type GroupMembersPageProps = {
 const GroupMembers: FC<RouteComponentProps<GroupMembersPageProps>> = ({
   match,
 }) => {
-  const { student: meStudent } = useSelfStudent();
+  const { student: meStudent } = useSelfStudentLite();
   const { data } = useGroupMembers(match.params.vanity_url, true);
   const { data: count } = useGroupMemsCount(match.params.vanity_url);
 

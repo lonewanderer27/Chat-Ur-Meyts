@@ -1,8 +1,10 @@
 import useProfile from '../profile/useProfile';
 import { useQuery } from '@tanstack/react-query';
 import client from '../../client';
+import useSession from '../auth/useSession';
 
 const useSelfStudentLite = () => {
+  const { session } = useSession();
   const { profile } = useProfile();
 
   const query = useQuery({
@@ -11,11 +13,12 @@ const useSelfStudentLite = () => {
       const res = await client
         .from("students")
         .select("*")
-        .eq("profile_id", profile!.id)
+        .eq("profile_id", session?.user.id!)
         .single();
 
       return res.data;
-    }
+    },
+    enabled: !!session
   })
 
   return {

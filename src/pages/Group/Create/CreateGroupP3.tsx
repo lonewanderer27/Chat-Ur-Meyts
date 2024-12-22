@@ -8,9 +8,6 @@ import {
   IonFooter,
   IonGrid,
   IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
   IonLabel,
   IonNote,
   IonPage,
@@ -29,25 +26,22 @@ import { NEW_GROUP } from "../../../constants/group";
 import { NewGroupInputs } from "../../../types/group/NewGroup";
 import { RouteComponentProps } from "react-router";
 import client from "../../../client";
-import { getAllColleges } from "../../../services/colleges";
-import { getAllCourses } from "../../../services/courses";
 import { newGroupAtom } from "../../../atoms/group";
 import { useAtom } from "jotai";
-import { useQuery } from "@tanstack/react-query";
-import useSelfStudent from "../../../hooks/student";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useHideTabs from "../../../hooks/useHideTabs";
 import useFetchAcademicYears from "../../../hooks/setup/useFetchAcademicYears";
 import useFetchColleges from "../../../hooks/group/useFetchColleges";
 import useFetchCourses from "../../../hooks/setup/useFetchCourses";
+import useSelfStudentLite from "../../../hooks/student/useSelfStudentLite";
 
 const CreateGroupP3: React.FC<RouteComponentProps> = ({ match }) => {
   useHideTabs();
   useHideTabs();
 
   const [show, dismiss] = useIonAlert();
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
   const rt = useIonRouter();
   const validationSchema = object().shape({
     school: number().required("Must be a valid school"),

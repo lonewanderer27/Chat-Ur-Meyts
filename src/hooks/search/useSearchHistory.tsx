@@ -1,15 +1,12 @@
 import { SearchHistoryType } from "../../types";
 import client from "../../client";
-import { searchHistoryAtom } from "../../atoms/search";
-import { useAtom } from "jotai";
-import { useEffect } from "react";
 import useProfile from "../profile/useProfile";
 import { useQuery } from "@tanstack/react-query";
-import useSelfStudent from "../student";
+import useSelfStudentLite from "../student/useSelfStudentLite";
 
 export default function useSearchHistory() {
   const { profile } = useProfile();
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
   // const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
   const shQuery = useQuery({

@@ -1,9 +1,9 @@
 import client from "../../client";
-import useSelfStudent from "../student";
 import useSession from "../auth/useSession";
+import useSelfStudentLite from "../student/useSelfStudentLite";
 
 export default function useSearch() {
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
   const { session } = useSession();
 
   const handleSearch = async (query: string) => {

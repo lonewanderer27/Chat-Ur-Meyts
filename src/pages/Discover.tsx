@@ -22,7 +22,6 @@ import {
 
 import NavBtn from "../components/NavBtn";
 import { showTabBar } from "../utils/TabBar";
-import useSelfStudent from "../hooks/student";
 import { FC, useRef, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import useSelfDraftStudent from "../hooks/student/useSelfDraftStudent";
@@ -30,10 +29,10 @@ import useSelfRecommendedGroups from "../hooks/student/useSelfRecommendedGroups"
 import RecommendedGroupsGrid from "../components/DiscoverPage/RecommendedGroupsGrid";
 import useUniversityAnnouncements from "../hooks/group/useUniversityAnnouncements";
 import UniversityPostsGrid from "../components/DiscoverPage/UniversityPostsGrid";
-// import MeModal from "../modals/MeModal";
+import useSelfStudentLite from "../hooks/student/useSelfStudentLite";
 
 const Discover: FC<RouteComponentProps> = ({ match }) => {
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
   const sRGQuery = useSelfRecommendedGroups();
   const uAQuery = useUniversityAnnouncements();
 

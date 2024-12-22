@@ -1,16 +1,9 @@
 import {
   IonBackButton,
-  IonButton,
   IonButtons,
-  IonCardContent,
-  IonCol,
   IonContent,
-  IonGrid,
   IonHeader,
-  IonList,
   IonPage,
-  IonRow,
-  IonText,
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
@@ -18,16 +11,22 @@ import {
 import { hideTabBar } from "../../utils/TabBar";
 
 import StudentItem from "../../components/SearchPage/StudentItem";
-import useSelfStudent from "../../hooks/student";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
 import { Virtuoso } from "react-virtuoso";
+import useSelfInfiniteFollowing from "../../hooks/student/useSelfInfiniteFollowing";
+import useSelfFollowingCount from "../../hooks/me/useSelfFollowingCount";
 
 const MeFollowing: FC<RouteComponentProps> = () => {
-  const { following } = useSelfStudent();
+  const { data: count } = useSelfFollowingCount();
+  const { data: following } = useSelfInfiniteFollowing();
   useIonViewWillEnter(() => {
     hideTabBar();
   });
+
+  const students = useMemo(
+    () => following?.pages.flat() || [],
+    [following?.pages.length]);
 
   return (
     <IonPage>
@@ -41,18 +40,18 @@ const MeFollowing: FC<RouteComponentProps> = () => {
                 text={""}
               />
             </IonButtons>
-            <IonTitle>Your Following ({following?.length ?? "-"})</IonTitle>
+            <IonTitle>Your Following ({count ?? " "})</IonTitle>
           </IonToolbar>
         </IonHeader>
         <Virtuoso
           className="rounded-xl"
-          data={following || []}
+          data={students}
           style={{ height: "92%" }}
-          totalCount={following?.length || 0}
+          totalCount={students?.length || 0}
           itemContent={(i, student) => (
             <StudentItem
-              student={student}
-              key={student.id}
+              key={i}
+              student={student!}
             />
           )}
         />

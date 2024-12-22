@@ -351,11 +351,12 @@ const CreateGroupP3: React.FC<RouteComponentProps> = ({ match }) => {
             <IonCol>
               <IonButton
                 shape="round"
-                className="font-poppins font-bold"
+                className="font-poppins"
                 expand="block"
                 onClick={handleSubmit(handleNext)}
+                disabled={creating}
               >
-                {creating ? <IonSpinner name="dots" /> : <span>Create Group</span>}
+                {creating ? <IonSpinner name="crescent" className="mr-2 h-5" /> : ""} Create Group
               </IonButton>
             </IonCol>
           </IonRow>

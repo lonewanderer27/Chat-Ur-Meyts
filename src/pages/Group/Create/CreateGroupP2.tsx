@@ -155,8 +155,9 @@ const CreateGroupP2: React.FC<RouteComponentProps> = ({ match }) => {
                 shape="round"
                 onClick={handleSubmit(handleNext, handleError)}
                 expand="full"
+                disabled={checkingUrl}
               >
-                {checkingUrl ? <IonSpinner name="dots" /> : <span>Next</span>}
+                {checkingUrl ? <IonSpinner name="crescent" className="mr-2 h-5" /> : ""} Next
               </IonButton>
             </IonCol>
           </IonRow>

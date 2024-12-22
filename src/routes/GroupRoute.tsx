@@ -1,6 +1,6 @@
 import { IonRouterOutlet } from '@ionic/react'
 import React from 'react'
-import { Redirect, Route, RouteComponentProps } from 'react-router'
+import { Route, RouteComponentProps } from 'react-router'
 import GroupInfo from '../pages/Group/GroupInfo'
 import GroupPostPage from '../pages/Group/GroupPostPage'
 import GroupResources from '../pages/Group/GroupResources'
@@ -8,33 +8,12 @@ import GroupTimeline from '../pages/Group/GroupTimeline'
 import GroupAwaitingApproval from '../pages/Group/Members/GroupAwaitingApproval'
 import GroupMembers from '../pages/Group/Members/GroupMembers'
 import GroupPendingMembers from '../pages/Group/Members/GroupPendingMembers'
-import CreateGroupP1 from '../pages/Group/Create/CreateGroupP1'
-import CreateGroupP2 from '../pages/Group/Create/CreateGroupP2'
-import CreateGroupP3 from '../pages/Group/Create/CreateGroupP3'
+import GroupRouteCreate from './GroupRouteCreate'
 
 const GroupRoute: React.FC<RouteComponentProps> = ({ match }) => {
   return (
     <IonRouterOutlet id="group">
-      <Route
-        path={`${match.url}/create`}
-        render={() => <Redirect to={`${match.url}/create/p1`} />}
-        exact
-      />
-      <Route
-        path={`${match.url}/create/p1`}
-        component={CreateGroupP1}
-        exact
-      />
-      <Route
-        path={`${match.url}/create/p2`}
-        component={CreateGroupP2}
-        exact
-      />
-      <Route
-        path={`${match.url}/create/p3`}
-        component={CreateGroupP3}
-        exact
-      />
+      <Route path={`${match.url}/create`} component={GroupRouteCreate} />
       <Route
         path={`${match.url}/id/:group_id`}
         component={GroupTimeline}

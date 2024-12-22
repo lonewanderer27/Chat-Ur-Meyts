@@ -5,7 +5,7 @@ import { addCircleOutline } from "ionicons/icons";
 export default function AddGroupCard() {
   const rt = useIonRouter()
   function handleClick() {
-    rt.push("/" + rt.routeInfo.pathname.split("/")[1] + "/group/create/p1");
+    rt.push("/group/create/p1");
   }
 
   return (

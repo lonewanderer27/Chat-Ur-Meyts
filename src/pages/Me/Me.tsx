@@ -308,19 +308,10 @@ const Me: FC<RouteComponentProps> = ({ match }) => {
             <MeLoaderCard />
           </div>
         )}
+        <IonButton color="danger" expand="block" onClick={logout}>
+          <IonLabel>Logout</IonLabel>
+        </IonButton>
       </IonContent>
-      {/* <IonFooter>
-        <IonToolbar className="p-2">
-          <IonButton
-            color="medium"
-            onClick={logout}
-            expand="block"
-            fill="outline"
-          >
-            Logout
-          </IonButton>
-        </IonToolbar>
-      </IonFooter> */}
     </IonPage>
   );
 };

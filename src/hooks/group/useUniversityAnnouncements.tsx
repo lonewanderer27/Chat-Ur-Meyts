@@ -30,6 +30,8 @@ const useUniversityAnnouncements = () => {
 
       return res.data ?? [];
     },
+    refetchOnMount: false,
+    refetchOnWindowFocus: false
   })
 
   return {

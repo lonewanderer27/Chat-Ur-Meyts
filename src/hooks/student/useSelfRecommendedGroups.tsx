@@ -31,6 +31,8 @@ const useSelfRecommendedGroups = () => {
       return res.data;
     },
     enabled: !!student?.id,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false
   })
 
   return {

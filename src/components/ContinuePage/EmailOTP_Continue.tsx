@@ -21,6 +21,7 @@ import {
   IonTitle,
   IonToolbar,
   useIonRouter,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { object, string } from "yup";
 
@@ -29,7 +30,7 @@ import OtpInput from "react-otp-input";
 import { chevronBackOutline } from "ionicons/icons";
 import client from "../../client";
 import useSetup from "../../hooks/setup/useSetup";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MaskEmail from "../../utils/MaskEmail";
 import testEmails from "../../constants/allowedTestEmails";
@@ -72,7 +73,7 @@ const EmailOTP_Continue = (props: {
   const [disableAuth, setDisableAuth] = useAtom(disableAuthWrapper);
 
   const rt = useIonRouter();
-  const { handleSubmit, control, setError, clearErrors, reset, getValues } =
+  const { handleSubmit, control, setError, clearErrors, reset, getValues, setFocus } =
     useForm<{ email: string; code?: string }>({
       resolver: yupResolver(schema),
     });
@@ -242,12 +243,14 @@ const EmailOTP_Continue = (props: {
 
   }, []);
 
+  useIonViewWillEnter(() => setFocus("email"), [])
+
   return (
     <IonModal
       onDidDismiss={() => props.setOpen(false)}
       isOpen={props.open}
-      breakpoints={[0, 0.5]}
-      initialBreakpoint={0.5}
+      breakpoints={[0, 0.6]}
+      initialBreakpoint={0.6}
       backdropDismiss={false}
       handle={false}
       canDismiss={state !== EmailOTP_Continue_Enum.VerifyOTP}
@@ -276,10 +279,11 @@ const EmailOTP_Continue = (props: {
                 </IonLabel>
                 <Controller
                   render={({
-                    field: { value, onChange, onBlur },
+                    field: { value, onChange, onBlur, ref },
                     fieldState: { error, isTouched },
                   }) => (
                     <IonInput
+                      ref={ref}
                       className={`${error && "ion-invalid"} ${isTouched && "ion-touched"}`}
                       fill="outline"
                       type="email"
@@ -296,7 +300,7 @@ const EmailOTP_Continue = (props: {
               </IonCol>
             </IonRow>
             <IonRow className="mt-4">
-              <IonCol size="6"/>
+              <IonCol size="6" />
               <IonCol size="6">
                 <IonButton
                   expand="full"
@@ -375,7 +379,7 @@ const EmailOTP_Continue = (props: {
                   disabled={processing}
                   onClick={handleSubmit(handleSubmitOTPSuccess, handleError)}
                 >
-                  {processing ? <IonSpinner name="dots" /> : "Submit"}
+                  {processing ? <IonSpinner name="crescent" className="mr-2 h-5" /> : ""} Submit
                 </IonButton>
               </IonCol>
             </IonRow>

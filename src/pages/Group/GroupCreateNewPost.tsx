@@ -79,7 +79,7 @@ const GroupCreateNewPost: FC<RouteComponentProps<{ vanity_url: string }>> = (p) 
 
     if (!image) {
       setPosting(false);
-      rt.push("/" + rt.routeInfo.pathname.split("/")[1] + "/group/vu/" + group?.vanity_id + "/post/" + newPost.data!.id);
+      rt.push("/group/vu/" + group?.vanity_id + "/post/" + newPost.data!.id);
       reset();
       return;
     };

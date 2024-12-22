@@ -90,8 +90,6 @@ const GroupInfo: FC<RouteComponentProps<GroupInfoPageProps>> = (p) => {
 
   const handleMembers = () => {
     rt.push(
-      "/" +
-      rt.routeInfo.pathname.split("/")[1] +
       "/group/vu/" +
       p.match.params.vanity_url +
       "/members",
@@ -102,8 +100,6 @@ const GroupInfo: FC<RouteComponentProps<GroupInfoPageProps>> = (p) => {
 
   const handlePendingMembers = () => {
     rt.push(
-      "/" +
-      rt.routeInfo.pathname.split("/")[1] +
       "/group/vu/" +
       p.match.params.vanity_url +
       "/members/pending",

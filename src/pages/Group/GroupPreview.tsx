@@ -42,8 +42,6 @@ const GroupPreview: FC<RouteComponentProps<GroupTimelinePageProps>> = ({
   const rt = useIonRouter();
   const handleMembers = () => {
     rt.push(
-      "/" +
-      rt.routeInfo.pathname.split("/")[1] +
       "/group/vu/" +
       match.params.vanity_url +
       "/members",

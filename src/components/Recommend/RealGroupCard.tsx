@@ -17,7 +17,7 @@ export interface RecommendGroupType2 extends GroupType {
 const RecommendedRealGroupCard = (props: { group: RecommendGroupType2 }) => {
   const rt = useIonRouter();
   const handleClick = () => {
-    rt.push("/discover/group/vu/" + props.group.vanity_id);
+    rt.push("/group/vu/" + props.group.vanity_id);
   };
 
   return (

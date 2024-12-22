@@ -21,7 +21,7 @@ export default function OldGroupCard(props: {
 }) {
   const rt = useIonRouter();
   function handleView() {
-    rt.push("/"+rt.routeInfo.pathname.split("/")[1]+"/group/vu/"+props.group.vanity_id, "forward")
+    rt.push("/group/vu/"+props.group.vanity_id, "forward")
   }
 
   return (

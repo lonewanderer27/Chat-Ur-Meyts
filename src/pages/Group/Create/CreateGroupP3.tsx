@@ -150,7 +150,7 @@ const CreateGroupP3: React.FC<RouteComponentProps> = ({ match }) => {
 
     // redirect the user to their newly created group using vanity url
     rt.push(
-      `/${match.path.split("/")[1]}/group/vu/${res.data?.vanity_id}`,
+      `/group/vu/${res.data?.vanity_id}`,
       "forward",
       "replace"
     );

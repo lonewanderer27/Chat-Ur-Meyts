@@ -8,7 +8,7 @@ import { memo } from "react";
 const RecommendedGroupCard = (props: { group: RecommendGroupType }) => {
   const rt = useIonRouter();
   const handleClick = () => {
-    rt.push("/discover/group/vu/" + props.group.vanity_id);
+    rt.push("/group/vu/" + props.group.vanity_id);
   };
 
   return (

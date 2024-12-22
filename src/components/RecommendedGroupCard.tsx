@@ -20,14 +20,7 @@ const RecommendedGroupCard = (props: {
 }) => {
   const rt = useIonRouter();
   const handleView = () => {
-    rt.push(
-      "/" +
-      rt.routeInfo.pathname.split("/")[1] +
-      "/group/vu/" +
-      props.group.vanity_id,
-      "none",
-      "push"
-    );
+    rt.push("/group/vu/" + props.group.vanity_id);
   };
 
   // Memoize approved members to avoid recalculating if group members don't change
@@ -60,25 +53,25 @@ const RecommendedGroupCard = (props: {
             {props.group.name}
           </IonText>
         </IonRow>
-        {!props.hideMembers && 
-        <div className="ml-[12px] flex flex-nowrap">
-          {approvedMembers.map((m, i) => {
-            if (i + 1 <= 6)
-              return (
-                <div className="avatar ml-[-16px]" title={m.student.full_name ?? ""} key={m.id + i}>
-                  {isValidUrl(m.avatar_url + "") ? (
-                    <img src={m.avatar_url + ""} />
-                  ) : (
-                    <IonIcon
-                      className="text-4xl"
-                      icon={personCircle}
-                      style={{ color: memberColors[i] }}
-                    />
-                  )}
-                </div>
-              )
-          })}
-        </div>}
+        {!props.hideMembers &&
+          <div className="ml-[12px] flex flex-nowrap">
+            {approvedMembers.map((m, i) => {
+              if (i + 1 <= 6)
+                return (
+                  <div className="avatar ml-[-16px]" title={m.student.full_name ?? ""} key={m.id + i}>
+                    {isValidUrl(m.avatar_url + "") ? (
+                      <img src={m.avatar_url + ""} />
+                    ) : (
+                      <IonIcon
+                        className="text-4xl"
+                        icon={personCircle}
+                        style={{ color: memberColors[i] }}
+                      />
+                    )}
+                  </div>
+                )
+            })}
+          </div>}
       </IonCard>
     </IonCol>
   )

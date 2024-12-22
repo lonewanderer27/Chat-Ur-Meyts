@@ -50,9 +50,7 @@ export default function Sidebar() {
   };
 
   const handleGroup = (vanityUrl: string) => {
-    rt.push(
-      "/" + rt.routeInfo.pathname.split("/")[1] + "/group/vu/" + vanityUrl
-    );
+    rt.push("/group/vu/" + vanityUrl);
   };
 
   const { data: meGroups } = useMeGroups();

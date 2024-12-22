@@ -21,7 +21,7 @@ function NewGroupCard(props: GroupCardProps) {
   const rt = useIonRouter();
   const isPhotoValid = useValidUrl(props.avatar_url);
   function handleView() {
-    rt.push("/"+rt.routeInfo.pathname.split("/")[1]+"/group/vu/"+props.vanity_id)
+    rt.push("/group/vu/"+props.vanity_id)
   }
   return (
     <IonCard

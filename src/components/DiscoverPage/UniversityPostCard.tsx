@@ -13,7 +13,7 @@ const UniversityPostCard = (props: {
   const handleClick = () => {
     console.log("clicked");
     rt.push(
-      `/${rt.routeInfo.pathname.split("/")[1]}/group/vu/${props.group?.vanity_id}/post/${props.post?.id}`,
+      `/group/vu/${props.group?.vanity_id}/post/${props.post?.id}`,
       "forward",
       "replace"
     );

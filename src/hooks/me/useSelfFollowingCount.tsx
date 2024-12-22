@@ -6,11 +6,11 @@ const useSelfFollowingCount = () => {
   const { student } = useSelfStudentLite();
 
   const q = useQuery({
-    queryKey: ["self_followings_count"],
+    queryKey: ["self_following_count"],
     queryFn: async () => {
       const res = await client
         .from("student_followers")
-        .select("*", { count: "exact", head: false })
+        .select("id", { count: "exact", head: true })
         .eq("follower_id", student!.id)
       console.log(res);
 

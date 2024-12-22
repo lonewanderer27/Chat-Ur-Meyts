@@ -3,29 +3,30 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonItem,
+  IonLabel,
   IonPage,
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { hideTabBar } from "../../utils/TabBar";
-
 import StudentItem from "../../components/SearchPage/StudentItem";
 import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
 import { Virtuoso } from "react-virtuoso";
-import useSelfInfiniteFollowing from "../../hooks/student/useSelfInfiniteFollowing";
-import useSelfFollowingCount from "../../hooks/me/useSelfFollowingCount";
+import useSelfInfiniteFollowing from "../../hooks/me/useSelfInfiniteFollowing";
+import useSelfFollowing from "../../hooks/student/useSelfFollowing";
 
 const MeFollowing: FC<RouteComponentProps> = () => {
-  const { data: count } = useSelfFollowingCount();
-  const { data: following } = useSelfInfiniteFollowing();
+  const { count } = useSelfFollowing();
+  const { data: following, fetchNextPage, hasNextPage, isFetchingNextPage } = useSelfInfiniteFollowing();
   useIonViewWillEnter(() => {
     hideTabBar();
   });
 
   const students = useMemo(
-    () => following?.pages.flat() || [],
+    () => following?.pages.flat() ?? [],
     [following?.pages.length]);
 
   return (
@@ -54,6 +55,23 @@ const MeFollowing: FC<RouteComponentProps> = () => {
               student={student!}
             />
           )}
+          components={{
+            Footer: () => {
+              if (isFetchingNextPage && hasNextPage) return (
+                <IonItem lines="none" className="text-center rounded-b-xl">
+                  <IonLabel color="medium">Loading more...</IonLabel>
+                </IonItem>
+              )
+              if (count === students.length) return (
+                <IonItem lines="none" className="text-center rounded-b-xl">
+                  <IonLabel color="medium">No more students</IonLabel>
+                </IonItem>
+              )
+            },
+          }}
+          endReached={() => {
+            if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+          }}
         />
       </IonContent>
     </IonPage>

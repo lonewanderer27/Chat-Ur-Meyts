@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import client from '../../client'
+import { useState } from 'react'
 
 const useStudentFollowings = (studentId: string) => {
+  const [count, setCount] = useState(0)
   const query = useQuery({
-    queryKey: ["studentFollowings", studentId],
-    queryFn: async() => {
+    queryKey: ["student_followings", studentId],
+    queryFn: async () => {
       // fetch the following ids
       const followingRes = await client
         .from("student_followers")
@@ -18,11 +20,16 @@ const useStudentFollowings = (studentId: string) => {
         .in("id", followingRes!.data!.map((f) => f.following_id))
         .order("created_at", { ascending: false })
 
+      setCount(students.count ?? 0);
+
       return students.data
     }
   })
 
-  return query;
+  return {
+    ...query,
+    count
+  };
 }
 
 export default useStudentFollowings

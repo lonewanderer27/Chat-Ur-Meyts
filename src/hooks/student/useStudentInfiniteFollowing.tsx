@@ -3,9 +3,9 @@ import client from '../../client'
 
 const PAGE_SIZE = 13
 
-const useInfiniteStudentFollowing = (studentId?: string) => {
+const useStudentInfiniteFollowing = (studentId?: string) => {
   const query = useInfiniteQuery({
-    queryKey: ["studentFollowings", studentId],
+    queryKey: ["infinite_student_following", studentId],
     queryFn: async ({ pageParam = 0 }) => {
       // fetch the following ids
       const followingRes = await client
@@ -38,4 +38,4 @@ const useInfiniteStudentFollowing = (studentId?: string) => {
   return query;
 }
 
-export default useInfiniteStudentFollowing
+export default useStudentInfiniteFollowing

@@ -23,7 +23,6 @@ import { FC, useEffect, useRef } from "react";
 import AvatarLarge from "../../components/Me/AvatarLarge";
 import { RouteComponentProps } from "react-router";
 import { hideTabBar } from "../../utils/TabBar";
-import useSession from "../../hooks/auth/useSession";
 import useStudentFollowings from "../../hooks/student/useStudentFollowings";
 import useStudentInfo from "../../hooks/student/useStudentInfo";
 import useStudentGroups from "../../hooks/student/useStudentGroups";

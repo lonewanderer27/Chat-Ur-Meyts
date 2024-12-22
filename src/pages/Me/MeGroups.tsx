@@ -1,34 +1,34 @@
 import {
   IonBackButton,
   IonButtons,
-  IonCardContent,
-  IonCol,
   IonContent,
-  IonGrid,
   IonHeader,
-  IonList,
+  IonItem,
+  IonLabel,
   IonPage,
-  IonRow,
-  IonText,
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { hideTabBar } from "../../utils/TabBar";
-
 import GroupItem from "../../components/SearchPage/GroupItem";
-import useSelfStudent from "../../hooks/student";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
-import useStudentGroups from "../../hooks/student/useStudentGroups";
 import { Virtuoso } from "react-virtuoso";
+import useSelfInfiniteGroups from "../../hooks/me/useSelfInfiniteGroups";
+import useSelfGroups from "../../hooks/student/useSelfGroups";
 
-const MeGroups: FC<RouteComponentProps> = ({ match }) => {
-  const { groups } = useSelfStudent();
-
+const MeGroups: FC<RouteComponentProps> = () => {
+  const { count } = useSelfGroups();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useSelfInfiniteGroups();
   useIonViewWillEnter(() => {
     hideTabBar();
   });
+
+  const groups = useMemo(
+    () => data?.pages.flat() || [],
+    [data?.pages.length]
+  )
 
   return (
     <IonPage>
@@ -42,20 +42,37 @@ const MeGroups: FC<RouteComponentProps> = ({ match }) => {
                 text={""}
               />
             </IonButtons>
-            <IonTitle>Your Groups ({groups?.length ?? "-"})</IonTitle>
+            <IonTitle>Your Groups ({count ?? " "})</IonTitle>
           </IonToolbar>
         </IonHeader>
         <Virtuoso
           className="rounded-xl"
-          data={groups || []}
+          data={groups ?? []}
           style={{ height: "92%" }}
-          totalCount={groups?.length || 0}
+          totalCount={groups.length || 0}
           itemContent={(i, group) => (
             <GroupItem
+              key={i}
               group={group}
-              key={group.id}
             />
           )}
+          components={{
+            Footer: () => {
+              if (isFetchingNextPage && hasNextPage) return (
+                <IonItem lines="none" className="text-center">
+                  <IonLabel color="medium">Loading more...</IonLabel>
+                </IonItem>
+              )
+              if (count === groups.length) return (
+                <IonItem lines="none" className="text-center rounded-b-xl">
+                  <IonLabel color="medium">No more groups</IonLabel>
+                </IonItem>
+              )
+            },
+          }}
+          endReached={() => {
+            if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+          }}
         />
       </IonContent>
     </IonPage>

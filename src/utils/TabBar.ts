@@ -18,7 +18,7 @@ export const hideTabBar = (): void => {
 export const showTabBar = (): void => {
   const tabBar = document.getElementsByTagName('ion-tab-bar')[0];
   if (tabBar !== null && tabBar.style.display !== 'flex') {
-    console.log('Showing tab bar');
+    // console.log('Showing tab bar');
     tabBar.style.display = 'flex';
 
     const animation = createAnimation()

@@ -3,7 +3,7 @@ import client from "../../client";
 
 const useStudentFollowingCount = (studentId?: string) => {
   const q = useQuery({
-    queryKey: ["student_followings_count", studentId],
+    queryKey: ["student_following_count", studentId],
     queryFn: async () => {
       const res0 = await client
         .from("student_followers")

@@ -13,6 +13,7 @@ import client from '../../../client';
 import useSelfStudentLite from '../../../hooks/student/useSelfStudentLite';
 import { useToggleTheme } from '../../../hooks/useToggleTheme';
 import { useDebounceValue } from 'usehooks-ts';
+import { GroupedVirtuoso } from 'react-virtuoso';
 
 const UpdateHobbies = () => {
   useIonViewWillEnter(() => {
@@ -299,8 +300,8 @@ const UpdateHobbies = () => {
             {/* Hobbies from our database */}
             {(!hcqR.isLoading &&
               !hqR.isLoading &&
-              !selfHbbysQry.isFetching) 
-                && hcqR.data?.map((hc) => {
+              !selfHbbysQry.isFetching)
+              && hcqR.data?.map((hc) => {
                 const hobbiesInCategory = filteredHobbies.filter((h) => h.category_id === hc.id);
                 if (hobbiesInCategory.length === 0) {
                   return null; // Skip rendering this category if no hobbies match
@@ -336,7 +337,7 @@ const UpdateHobbies = () => {
                   </IonGrid>
                 )
               })
-              }
+            }
 
           </IonGrid>
         </IonContent>

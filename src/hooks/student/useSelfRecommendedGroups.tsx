@@ -20,7 +20,7 @@ const useSelfRecommendedGroups = () => {
         return [];
       }
 
-      console.log("recommended groups", res0);
+      // console.log("recommended groups", res0);
 
       const res = await client
         .from("groups")

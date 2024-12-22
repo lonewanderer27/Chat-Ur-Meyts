@@ -11,13 +11,9 @@ import { peopleCircleOutline } from "ionicons/icons";
 import { useMemo } from "react";
 import { GroupType } from "../../types";
 import useAmIAMember from "../../hooks/group/useAmIAMember";
-import { ExpandedGroupMemberType } from "../../services/groups";
 
 export default function GroupItem(props: {
-  group: GroupType & {
-    memberCount?: number;
-    group_members: ExpandedGroupMemberType[];
-  };
+  group: GroupType;
   icon?: string;
   buttonLabel?: string;
   hideButton?: boolean;

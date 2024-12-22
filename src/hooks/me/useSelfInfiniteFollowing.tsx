@@ -1,4 +1,4 @@
-import useSelfStudentLite from "./useSelfStudentLite";
+import useSelfStudentLite from "../student/useSelfStudentLite";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import client from "../../client";
 
@@ -9,7 +9,7 @@ const useSelfInfiniteFollowing = () => {
 
   // fetch the student profiles of the followings
   const q = useInfiniteQuery({
-    queryKey: ["infinite_self_followings"],
+    queryKey: ["self_infinite_followings"],
     queryFn: async ({ pageParam = 0 }) => {
       const res = await client
         .from("student_followers")

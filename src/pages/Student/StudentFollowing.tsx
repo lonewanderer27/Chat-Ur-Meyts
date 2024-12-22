@@ -3,6 +3,8 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonItem,
+  IonLabel,
   IonPage,
   IonTitle,
   IonToolbar,
@@ -14,8 +16,9 @@ import { RouteComponentProps } from "react-router";
 import StudentItem from "../../components/SearchPage/StudentItem";
 import { hideTabBar } from "../../utils/TabBar";
 import useStudentFollowingCount from "../../hooks/student/useStudentFollowingCount";
-import useInfiniteStudentFollowing from "../../hooks/student/useInfiniteStudentFollowing";
+import useStudentInfiniteFollowing from "../../hooks/student/useStudentInfiniteFollowing";
 import { Virtuoso } from "react-virtuoso";
+import useStudentFollowings from "../../hooks/student/useStudentFollowings";
 
 type StudentFollowingPageProps = {
   student_id: string;
@@ -24,14 +27,14 @@ type StudentFollowingPageProps = {
 const StudentFollowing: FC<RouteComponentProps<StudentFollowingPageProps>> = ({
   match,
 }) => {
-  const { data: count } = useStudentFollowingCount(match.params.student_id);
-  const { data: following } = useInfiniteStudentFollowing(match.params.student_id);
+  const { count } = useStudentFollowings(match.params.student_id);
+  const { data: following, fetchNextPage, hasNextPage, isFetchingNextPage } = useStudentInfiniteFollowing(match.params.student_id);
   useIonViewWillEnter(() => {
     hideTabBar();
   });
 
   const students = useMemo(
-    () => following?.pages.flat() || [],
+    () => following?.pages.flat() ?? [],
     [following?.pages.length,]);
 
   return (
@@ -46,7 +49,7 @@ const StudentFollowing: FC<RouteComponentProps<StudentFollowingPageProps>> = ({
                 text={""}
               />
             </IonButtons>
-            <IonTitle>Their Following ({count ?? "-"})</IonTitle>
+            <IonTitle>Following ({ count ?? " " })</IonTitle>
           </IonToolbar>
         </IonHeader>
         <Virtuoso
@@ -57,9 +60,26 @@ const StudentFollowing: FC<RouteComponentProps<StudentFollowingPageProps>> = ({
           itemContent={(i, student) => (
             <StudentItem
               key={i}
-              student={student!}
+              student={student}
             />
           )}
+          components={{
+            Footer: () => {
+              if (isFetchingNextPage && hasNextPage) return (
+                <IonItem lines="none" className="text-center">
+                  <IonLabel color="medium">Loading more...</IonLabel>
+                </IonItem>
+              )
+              if (count === students.length) return (
+                <IonItem lines="none" className="text-center rounded-b-xl">
+                  <IonLabel color="medium">No more students</IonLabel>
+                </IonItem>
+              )
+            },
+          }}
+          endReached={() => {
+            if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+          }}
         />
       </IonContent>
     </IonPage>

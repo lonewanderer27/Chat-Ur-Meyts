@@ -25,12 +25,9 @@ export default function StudentItem(props: {
   }, [props.student.avatar_url]);
   
   function handleClick() {
-    // get the main pathname like /community
-    const mainPathname = rt.routeInfo.pathname.split("/")[1];
-
     // if me is true, then we are this person
     if (props.me) {
-      rt.push("/"+mainPathname+"/me");
+      rt.push("/me");
       return;
     }
     

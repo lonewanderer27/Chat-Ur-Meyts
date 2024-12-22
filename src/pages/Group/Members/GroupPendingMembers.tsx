@@ -117,7 +117,7 @@ const GroupPendingMembers: FC<
         </IonHeader>
         <IonList className="mx-[-15px]">
           {data?.map((member) => {
-            const cs = member.students;
+            const cs = member.student;
             // find it if it's me
             const me = cs!.id === student?.id;
             return (

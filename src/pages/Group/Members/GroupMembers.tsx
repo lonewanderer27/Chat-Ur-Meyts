@@ -71,12 +71,12 @@ const GroupMembers: FC<RouteComponentProps<GroupMembersPageProps>> = ({
             Footer: () => {
               if (isFetchingNextPage && hasNextPage) return (
                 <IonItem lines="none" className="text-center">
-                  <IonLabel>Loading more...</IonLabel>
+                  <IonLabel color="medium">Loading more...</IonLabel>
                 </IonItem>
               )
               if (count === members.length) return (
                 <IonItem lines="none" className="text-center">
-                  <IonLabel>No more members</IonLabel>
+                  <IonLabel color="medium">No more members</IonLabel>
                 </IonItem>
               )
             },

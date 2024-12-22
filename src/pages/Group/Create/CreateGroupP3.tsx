@@ -346,15 +346,19 @@ const CreateGroupP3: React.FC<RouteComponentProps> = ({ match }) => {
         </IonGrid>
       </IonContent>
       <IonFooter>
-        <IonToolbar className="p-5">
-          <IonButton
-            shape="round"
-            className="font-poppins font-bold"
-            expand="block"
-            onClick={handleSubmit(handleNext)}
-          >
-            {creating ? <IonSpinner name="dots" /> : <span>Create Group</span>}
-          </IonButton>
+        <IonToolbar className="px-2">
+          <IonRow>
+            <IonCol>
+              <IonButton
+                shape="round"
+                className="font-poppins font-bold"
+                expand="block"
+                onClick={handleSubmit(handleNext)}
+              >
+                {creating ? <IonSpinner name="dots" /> : <span>Create Group</span>}
+              </IonButton>
+            </IonCol>
+          </IonRow>
         </IonToolbar>
       </IonFooter>
     </IonPage>

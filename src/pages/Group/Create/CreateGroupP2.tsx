@@ -146,15 +146,20 @@ const CreateGroupP2: React.FC<RouteComponentProps> = ({ match }) => {
           </IonList>
         </IonGrid>
       </IonContent>
-      <IonFooter>
-        <IonToolbar className="p-4">
-          <IonButton
-            shape="round"
-            onClick={handleSubmit(handleNext, handleError)}
-            slot="end"
-          >
-            {checkingUrl ? <IonSpinner name="dots" /> : <span>Next</span>}
-          </IonButton>
+      <IonFooter className="px-2">
+        <IonToolbar>
+          <IonRow>
+            <IonCol/>
+            <IonCol size="6">
+              <IonButton
+                shape="round"
+                onClick={handleSubmit(handleNext, handleError)}
+                expand="full"
+              >
+                {checkingUrl ? <IonSpinner name="dots" /> : <span>Next</span>}
+              </IonButton>
+            </IonCol>
+          </IonRow>
         </IonToolbar>
       </IonFooter>
     </IonPage>

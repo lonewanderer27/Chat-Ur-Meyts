@@ -169,7 +169,7 @@ const Setup3AcademicInformation: FC<RouteComponentProps> = ({ match }) => {
     }, ds.data?.id!)
 
     // // refetch the draft student record
-    // await ds.refetch();
+    await ds.refetch();
 
     setChecking(() => false);
     setUploading(() => false);

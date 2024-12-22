@@ -198,7 +198,7 @@ const Setup4Classes: FC<RouteComponentProps> = ({ match }) => {
     await handleDraftClasses(data, ds.data?.id!);
 
     // refetch the draft student
-    // await ds.refetch();
+    await ds.refetch();
 
     // navigate to the interests screen
     await handleNext();

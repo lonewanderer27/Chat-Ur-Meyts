@@ -2,19 +2,13 @@ import "./GroupItem.css";
 
 import {
   IonAvatar,
-  IonButton,
-  IonCol,
   IonIcon,
   IonItem,
   IonLabel,
-  IonRow,
-  IonText,
   useIonRouter,
 } from "@ionic/react";
-import ItemListButton from "../ItemListButton";
 import { peopleCircleOutline } from "ionicons/icons";
 import { useMemo } from "react";
-import useSelfStudent from "../../hooks/student";
 import { GroupType } from "../../types";
 import useAmIAMember from "../../hooks/group/useAmIAMember";
 import { ExpandedGroupMemberType } from "../../services/groups";
@@ -29,7 +23,6 @@ export default function GroupItem(props: {
   hideButton?: boolean;
 }) {
   const rt = useIonRouter();
-  const { groups } = useSelfStudent();
 
   const isValidUrl = useMemo(() => {
     try {
@@ -45,27 +38,17 @@ export default function GroupItem(props: {
     // check if user is a member of the group
     if (amIAMember && amIAMember.approved === false) {
       rt.push(
-        "/" +
-          rt.routeInfo.pathname.split("/")[1] +
-          "/group/vu/" +
-          props.group.vanity_id +
-          "/preview",
+        "/group/vu/" +
+        props.group.vanity_id +
+        "/preview",
         "forward",
         "push"
       );
       return;
     }
 
-    // get the main pathname like /discover
-    const mainPathname = rt.routeInfo.pathname.split("/")[1];
-    rt.push("/" + mainPathname + "/group/vu/" + props.group.vanity_id);
+    rt.push("/group/vu/" + props.group.vanity_id);
   }
-
-  function handleJoin() {
-    // TODO: Join functionality
-  }
-
-  console.log("groupitem: group_members", props.group.group_members);
 
   return (
     <IonItem lines="full" onClick={handleView} className="cursor-pointer">
@@ -86,7 +69,7 @@ export default function GroupItem(props: {
           {props.group.approx_members_count} Members
         </p>
       </IonLabel>
-      
+
     </IonItem>
   );
 }

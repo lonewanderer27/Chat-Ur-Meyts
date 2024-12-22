@@ -24,7 +24,7 @@ export default function Community() {
               </IonButtons>
               <IonButtons slot="end">
                 <NavBtn
-                  route="community/me"
+                  route="/me"
                   avatarUrl={student?.avatar_url}
                   icon={personCircleOutline}
                 />

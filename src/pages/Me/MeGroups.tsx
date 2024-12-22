@@ -24,7 +24,7 @@ import useStudentGroups from "../../hooks/student/useStudentGroups";
 import { Virtuoso } from "react-virtuoso";
 
 const MeGroups: FC<RouteComponentProps> = ({ match }) => {
-  const { student, groups } = useSelfStudent();
+  const { groups } = useSelfStudent();
 
   useIonViewWillEnter(() => {
     hideTabBar();

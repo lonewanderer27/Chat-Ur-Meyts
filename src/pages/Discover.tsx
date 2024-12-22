@@ -30,6 +30,7 @@ import useSelfRecommendedGroups from "../hooks/student/useSelfRecommendedGroups"
 import RecommendedGroupsGrid from "../components/DiscoverPage/RecommendedGroupsGrid";
 import useUniversityAnnouncements from "../hooks/group/useUniversityAnnouncements";
 import UniversityPostsGrid from "../components/DiscoverPage/UniversityPostsGrid";
+// import MeModal from "../modals/MeModal";
 
 const Discover: FC<RouteComponentProps> = ({ match }) => {
   const { student } = useSelfStudent();
@@ -129,15 +130,21 @@ const Discover: FC<RouteComponentProps> = ({ match }) => {
 
             <IonButtons slot="end">
               <NavBtn
-                route="/discover/me"
+                route="/me"
                 avatarUrl={student?.avatar_url}
                 icon={personCircleOutline}
               />
+              {/* <NavBtn
+                id="open-profile"
+                avatarUrl={student?.avatar_url}
+                icon={personCircleOutline}
+              /> */}
               <NavBtn route="/discover/search" icon={searchOutline} />
               <NavBtn route="/discover/inbox" icon={notificationsOutline} />
             </IonButtons>
           </IonToolbar>
         </IonHeader>
+        {/* <MeModal /> */}
         <UniversityPostsGrid />
         <RecommendedGroupsGrid />
       </IonContent>

@@ -35,7 +35,8 @@ export default function StudentItem(props: {
     }
     
     // otherwise we are looking at someone else
-    rt.push("/"+mainPathname+"/student/id/" + props.student.id);
+    // rt.push("/"+mainPathname+"/student/id/" + props.student.id);
+    rt.push("/student/id/"+props.student.id);
   }
 
   return (

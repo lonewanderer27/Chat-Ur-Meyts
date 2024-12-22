@@ -10,7 +10,7 @@ import {
 import { peopleCircleOutline } from "ionicons/icons";
 
 type BtnProps = ComponentProps<typeof IonButton> & {
-  route: string;
+  route?: string;
   icon?: string;
   avatarUrl?: string | null | undefined;
   size?: "small" | "default" | "large";
@@ -28,7 +28,7 @@ export default function NavBtn(props: BtnProps) {
   }, [props.avatarUrl]);
 
   const handleClick = () => {
-    rt.push(props.route, "forward");
+    if (props.route) rt.push(props.route);
   };
 
   return (

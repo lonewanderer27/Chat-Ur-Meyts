@@ -11,7 +11,6 @@ const useStudentInfo = (studentId: string) => {
         .select("*")
         .eq("id", studentId)
         .single()
-
       return res.data
     }
   })

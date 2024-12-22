@@ -20,24 +20,23 @@ import {
   useIonViewWillEnter,
   createAnimation, // Import createAnimation
 } from "@ionic/react";
-import { hideTabBar } from "../../utils/TabBar";
 
 import { FC, useEffect, useRef } from "react";
-import AvatarLarge from "../../components/Me/AvatarLarge";
+import AvatarLarge from "../components/Me/AvatarLarge";
 import { RouteComponentProps } from "react-router";
-import useSelfStudent from "../../hooks/student";
-import useSession from "../../hooks/auth/useSession";
+import useSelfStudentLite from "../hooks/student/useSelfStudentLite";
+import useSession from "../hooks/auth/useSession";
 import { add, addCircleOutline, addOutline, colorWandOutline, pencilOutline, pencilSharp } from "ionicons/icons";
-import useSelfGroups from "../../hooks/student/useSelfGroups";
-import useSelfFollowing from "../../hooks/student/useSelfFollowing";
-import useSelfHobbies from "../../hooks/student/useSelfHobbies";
-import useSelfSubjects from "../../hooks/student/useSelfSubjects";
+import useSelfGroups from "../hooks/student/useSelfGroups";
+import useSelfFollowing from "../hooks/student/useSelfFollowing";
+import useSelfHobbies from "../hooks/student/useSelfHobbies";
+import useSelfSubjects from "../hooks/student/useSelfSubjects";
 import string from "string";
-import MeLoaderCard from "../../components/Me/MeLoaderCard";
+import MeLoaderCard from "../components/Me/MeLoaderCard";
 
-const Me: FC<RouteComponentProps> = ({ match }) => {
+const Me: FC<RouteComponentProps> = () => {
   const rt = useIonRouter();
-  const { student, query: studentQuery } = useSelfStudent();
+  const { student, query: studentQuery } = useSelfStudentLite();
   const { hobbies, query: hobbiesQuery } = useSelfHobbies();
   const { subjects, query: subjectsQuery } = useSelfSubjects();
 
@@ -61,10 +60,6 @@ const Me: FC<RouteComponentProps> = ({ match }) => {
   const handleRecommendation = () => {
     rt.push(rt.routeInfo.pathname + "/recommend/groups");
   };
-
-  useIonViewWillEnter(() => {
-    hideTabBar();
-  });
 
   // Create refs for each section and loader
   const descriptionRef = useRef<HTMLDivElement>(null);

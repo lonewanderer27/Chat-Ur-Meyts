@@ -29,9 +29,10 @@ import { RouteComponentProps } from "react-router";
 import StudentItem from "../../components/SearchPage/StudentItem";
 import useSelfStudent from "../../hooks/student";
 import useUpdateInfo from "../../hooks/me/useUpdateInfo";
+import useSelfStudentLite from "../../hooks/student/useSelfStudentLite";
 
 const MeUpdate: FC<RouteComponentProps> = ({ match }) => {
-  const { student } = useSelfStudent();
+  const { student } = useSelfStudentLite();
   const {
     handleSubmit,
     handleSave,
@@ -93,7 +94,7 @@ const MeUpdate: FC<RouteComponentProps> = ({ match }) => {
                   onIonChange={onChange}
                   onIonBlur={onBlur}
                   errorText={error?.message}
-                  helperText="You must upload an updated Certificate of Enrollment to update your full name."
+                  helperText="You must upload an updated Certificate of Enrollment to change your full name."
                   readonly
                 />
               )}

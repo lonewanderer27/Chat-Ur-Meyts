@@ -51,6 +51,9 @@ const ThreadsRoute = lazy(() => import("./routes/ThreadsRoute"));
 import SetupRoute from "./routes/SetupRoute";
 const SurveysRoute = lazy(() => import("./routes/SurveysRoute"));
 import RecommendRoute from "./routes/RecommendRoute";
+import MeRoute from "./routes/MeRoute";
+import StudentRoute from "./routes/StudentRoute";
+import GroupRoute from "./routes/GroupRoute";
 // const RecommendRoute = lazy(() => import("./routes/RecommendRoute"));
 const Inbox = lazy(() => import("./pages/Inbox"));
 const NotFound = lazy(() => import("./routes/NotFound"));
@@ -89,6 +92,9 @@ const App = () => {
                     <Route path="/discover" component={DiscoverRoute} />
                     <Route path="/community" component={CommunityRoute} />
                     <Route path="/threads" component={ThreadsRoute} />
+                    <Route path="/me" component={MeRoute} />
+                    <Route path="/group" component={GroupRoute} />
+                    <Route path="/student" component={StudentRoute} />
                     <Route path="/setup" component={SetupRoute} />
                     <Route path="/surveys" component={SurveysRoute} />
                     <Route path="/recommend" component={RecommendRoute} />

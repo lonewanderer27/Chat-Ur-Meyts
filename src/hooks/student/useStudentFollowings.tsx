@@ -11,8 +11,6 @@ const useStudentFollowings = (studentId: string) => {
         .select("*")
         .eq("follower_id", studentId)
 
-      console.log("followingRes: ", followingRes)
-
       // fetch the students that are following
       const students = await client
         .from("students")

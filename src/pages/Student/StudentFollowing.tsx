@@ -2,20 +2,20 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
-  IonGrid,
   IonHeader,
-  IonList,
   IonPage,
   IonTitle,
   IonToolbar,
   useIonViewWillEnter,
 } from "@ionic/react";
 
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
 import StudentItem from "../../components/SearchPage/StudentItem";
 import { hideTabBar } from "../../utils/TabBar";
-import useStudentFollowings from "../../hooks/student/useStudentFollowings";
+import useStudentFollowingCount from "../../hooks/student/useStudentFollowingCount";
+import useInfiniteStudentFollowing from "../../hooks/student/useInfiniteStudentFollowing";
+import { Virtuoso } from "react-virtuoso";
 
 type StudentFollowingPageProps = {
   student_id: string;
@@ -24,10 +24,15 @@ type StudentFollowingPageProps = {
 const StudentFollowing: FC<RouteComponentProps<StudentFollowingPageProps>> = ({
   match,
 }) => {
-  const { data: following } = useStudentFollowings(match.params.student_id);
+  const { data: count } = useStudentFollowingCount(match.params.student_id);
+  const { data: following } = useInfiniteStudentFollowing(match.params.student_id);
   useIonViewWillEnter(() => {
     hideTabBar();
   });
+
+  const students = useMemo(
+    () => following?.pages.flat() || [],
+    [following?.pages.length,]);
 
   return (
     <IonPage>
@@ -41,14 +46,21 @@ const StudentFollowing: FC<RouteComponentProps<StudentFollowingPageProps>> = ({
                 text={""}
               />
             </IonButtons>
-            <IonTitle>Their Following ({following?.length ?? "-"})</IonTitle>
+            <IonTitle>Their Following ({count ?? "-"})</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonList className="rounded-xl">
-          {following?.map((klasmeyt) => (
-            <StudentItem student={klasmeyt} key={klasmeyt.id} />
-          ))}
-        </IonList>
+        <Virtuoso
+          className="rounded-xl"
+          data={students}
+          style={{ height: "92%" }}
+          totalCount={students?.length || 0}
+          itemContent={(i, student) => (
+            <StudentItem
+              key={i}
+              student={student!}
+            />
+          )}
+        />
       </IonContent>
     </IonPage>
   );

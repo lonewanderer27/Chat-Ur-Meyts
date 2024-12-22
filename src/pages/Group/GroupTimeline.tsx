@@ -1,24 +1,16 @@
 import {
-  IonAvatar,
   IonBackButton,
   IonButton,
   IonButtons,
   IonChip,
-  IonCol,
   IonContent,
   IonFab,
-  IonFabButton,
   IonFooter,
-  IonGrid,
   IonHeader,
   IonIcon,
-  IonImg,
   IonItem,
   IonLabel,
-  IonLoading,
   IonPage,
-  IonRow,
-  IonText,
   IonThumbnail,
   IonToolbar,
   useIonRouter,
@@ -27,24 +19,13 @@ import {
 
 import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
-import useGroupMemsCount from "../../hooks/group/useGroupMemsCount";
 import useGroupInfoLite from "../../hooks/group/useGroupInfoLite";
 import {
   add,
-  addCircle,
-  addCircleOutline,
-  addCircleSharp,
-  chatboxOutline,
-  chatbubbleOutline,
-  ellipsisVerticalOutline,
-  informationCircleOutline,
   informationOutline,
   listOutline,
   peopleCircleOutline,
   peopleOutline,
-  personOutline,
-  shareOutline,
-  shareSocialOutline,
 } from "ionicons/icons";
 import useAmIAMember from "../../hooks/group/useAmIAMember";
 import GroupPreview from "./GroupPreview";
@@ -59,7 +40,6 @@ type GroupTimelinePageProps = {
 
 const GroupTimeline: FC<RouteComponentProps<GroupTimelinePageProps>> = (p) => {
   const { data: infoLite } = useGroupInfoLite(p.match.params.vanity_url);
-  // const { data } = useGroupMemsCount(p.match.params.vanity_url);
   const { data: groupRules } = useGroupRules(p.match.params.vanity_url);
   useIonViewWillEnter(() => {
     hideTabBar();
@@ -105,11 +85,6 @@ const GroupTimeline: FC<RouteComponentProps<GroupTimelinePageProps>> = (p) => {
             <IonButtons slot="start">
               <IonBackButton defaultHref="/discover" text="" />
             </IonButtons>
-            {/* <IonButtons slot="end">
-              <IonButton>
-                <IonIcon icon={shareSocialOutline} />
-              </IonButton>
-            </IonButtons> */}
           </IonToolbar>
         </IonHeader>
         <IonItem lines="none" className="mx-[-15px]" color="light">

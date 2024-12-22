@@ -9,6 +9,7 @@ import GroupAwaitingApproval from '../pages/Group/Members/GroupAwaitingApproval'
 import GroupMembers from '../pages/Group/Members/GroupMembers'
 import GroupPendingMembers from '../pages/Group/Members/GroupPendingMembers'
 import GroupRouteCreate from './GroupRouteCreate'
+import GroupCreateNewPost from '../pages/Group/GroupCreateNewPost'
 
 const GroupRoute: React.FC<RouteComponentProps> = ({ match }) => {
   return (
@@ -52,6 +53,11 @@ const GroupRoute: React.FC<RouteComponentProps> = ({ match }) => {
       <Route
         path={`${match.url}/vu/:vanity_url/info`}
         component={GroupInfo}
+        exact
+      />
+      <Route
+        path={`${match.url}/vu/:vanity_url/new-post`}
+        component={GroupCreateNewPost}
         exact
       />
       {/* <Route

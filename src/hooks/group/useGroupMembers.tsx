@@ -15,9 +15,8 @@ export default function useGroupMembers(vanity_url?: string, approved?: boolean)
         .eq("vanity_id", vanity_url!)
         .single();
 
-      if (!groupRes.data) {
-        throw new Error("Group not found");
-      }
+      if (!groupRes.data || groupRes.error) return []
+
       setGroup(groupRes.data);
       const group_id = groupRes.data.id;
 

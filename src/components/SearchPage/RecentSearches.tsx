@@ -1,9 +1,6 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonChip, IonSkeletonText } from '@ionic/react'
-
-import React from 'react'
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle } from '@ionic/react'
 import RecentSearchItem from './RecentSearchItem';
 import { SearchHistoryType } from '../../types'
-import useSelfStudent from '../../hooks/student';
 import RecentSearchItemLoader from '../../loaders/RecentSearchItemLoader';
 import useSelfStudentLite from '../../hooks/me/useSelfStudentLite';
 

@@ -22,7 +22,7 @@ import { FC, useEffect } from "react";
 import { RouteComponentProps } from "react-router";
 import client from "../client";
 import useSession from "../hooks/auth/useSession";
-import useSelfDraftStudent from "../hooks/student/useSelfDraftStudent";
+import useSelfDraftStudent from "../hooks/me/useSelfDraftStudent";
 import useSetupDraftStudent from "../hooks/setup/useSetupDraftStudent";
 import useSelfSetupDraftStudent from "../hooks/setup/useSelfSetupDraftStudent";
 import { useAtom } from "jotai";

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useSelfStudentLite from "../student/useSelfStudentLite";
+import useSelfStudentLite from "../me/useSelfStudentLite";
 import client from "../../client";
 import { useState } from "react";
 import useFeatureFlags from "../useFeatureFlags";

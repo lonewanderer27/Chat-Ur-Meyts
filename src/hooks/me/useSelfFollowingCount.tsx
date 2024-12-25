@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import client from "../../client";
-import useSelfStudentLite from "../student/useSelfStudentLite";
+import useSelfStudentLite from "./useSelfStudentLite";
 
 const useSelfFollowingCount = () => {
   const { student } = useSelfStudentLite();

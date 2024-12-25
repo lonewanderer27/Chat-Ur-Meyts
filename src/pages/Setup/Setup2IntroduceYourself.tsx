@@ -31,7 +31,7 @@ import { newStudentAtom } from "../../atoms/student";
 import { SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { hideTabBar } from "../../utils/TabBar";
 import useSetupDraftStudent from "../../hooks/setup/useSetupDraftStudent";
-import useSelfDraftStudent from "../../hooks/student/useSelfDraftStudent";
+import useSelfDraftStudent from "../../hooks/me/useSelfDraftStudent";
 import useSelfSetupDraftStudent from "../../hooks/setup/useSelfSetupDraftStudent";
 
 // VS = Validation Schema

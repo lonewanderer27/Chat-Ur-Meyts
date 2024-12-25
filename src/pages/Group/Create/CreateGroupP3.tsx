@@ -36,7 +36,7 @@ import useHideTabs from "../../../hooks/useHideTabs";
 import useFetchAcademicYears from "../../../hooks/setup/useFetchAcademicYears";
 import useFetchColleges from "../../../hooks/group/useFetchColleges";
 import useFetchCourses from "../../../hooks/setup/useFetchCourses";
-import useSelfStudentLite from "../../../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../../../hooks/me/useSelfStudentLite";
 
 const CreateGroupP3: React.FC<RouteComponentProps> = ({ match }) => {
   useHideTabs();

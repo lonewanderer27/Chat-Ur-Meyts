@@ -16,7 +16,7 @@ import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
 import { Virtuoso } from "react-virtuoso";
 import useSelfInfiniteFollowing from "../../hooks/me/useSelfInfiniteFollowing";
-import useSelfFollowing from "../../hooks/student/useSelfFollowing";
+import useSelfFollowing from "../../hooks/me/useSelfFollowing";
 
 const MeFollowing: FC<RouteComponentProps> = () => {
   const { count } = useSelfFollowing();

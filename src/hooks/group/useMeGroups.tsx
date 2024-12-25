@@ -2,7 +2,7 @@ import React from 'react'
 import useSelfStudent from '../student'
 import { useQuery } from '@tanstack/react-query';
 import client from '../../client';
-import useSelfStudentLite from '../student/useSelfStudentLite';
+import useSelfStudentLite from '../me/useSelfStudentLite';
 
 const useMeGroups = () => {
   const { student } = useSelfStudentLite();

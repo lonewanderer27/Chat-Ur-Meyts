@@ -9,7 +9,7 @@ import client from "../../client";
 import { useAtom } from "jotai";
 import { newStudentAtom } from "../../atoms/student";
 import dayjs from "dayjs";
-import useSelfStudentLite from "../student/useSelfStudentLite";
+import useSelfStudentLite from "../me/useSelfStudentLite";
 
 export default function useSetup() {
   const [progress, setProgress] = useState<SetupProgressType["progress"]>([

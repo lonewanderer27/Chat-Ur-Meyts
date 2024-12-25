@@ -1,5 +1,5 @@
 import React from 'react'
-import useSelfStudentLite from '../student/useSelfStudentLite';
+import useSelfStudentLite from '../me/useSelfStudentLite';
 import { useQuery } from '@tanstack/react-query';
 import client from '../../client';
 

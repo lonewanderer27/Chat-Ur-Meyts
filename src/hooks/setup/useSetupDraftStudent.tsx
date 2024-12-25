@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { useIonRouter } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import useFeatureFlags from '../useFeatureFlags';
-import useSelfStudentLite from '../student/useSelfStudentLite';
+import useSelfStudentLite from '../me/useSelfStudentLite';
 import { useAtomValue } from 'jotai';
 import { newStudentAtom } from '../../atoms/student';
 import useSession from '../auth/useSession';

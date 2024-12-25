@@ -24,12 +24,12 @@ import NavBtn from "../components/NavBtn";
 import { showTabBar } from "../utils/TabBar";
 import { FC, useRef, useState } from "react";
 import { RouteComponentProps } from "react-router";
-import useSelfDraftStudent from "../hooks/student/useSelfDraftStudent";
-import useSelfRecommendedGroups from "../hooks/student/useSelfRecommendedGroups";
+import useSelfDraftStudent from "../hooks/me/useSelfDraftStudent";
+import useSelfRecommendedGroups from "../hooks/me/useSelfRecommendedGroups";
 import RecommendedGroupsGrid from "../components/DiscoverPage/RecommendedGroupsGrid";
 import useUniversityAnnouncements from "../hooks/group/useUniversityAnnouncements";
 import UniversityPostsGrid from "../components/DiscoverPage/UniversityPostsGrid";
-import useSelfStudentLite from "../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../hooks/me/useSelfStudentLite";
 
 const Discover: FC<RouteComponentProps> = ({ match }) => {
   const { student } = useSelfStudentLite();

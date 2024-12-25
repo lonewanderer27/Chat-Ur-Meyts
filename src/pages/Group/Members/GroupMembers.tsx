@@ -17,7 +17,7 @@ import StudentItem from "../../../components/SearchPage/StudentItem";
 import { hideTabBar } from "../../../utils/TabBar";
 import useGroupMemsCount from "../../../hooks/group/useGroupMemsCount";
 import { Virtuoso } from 'react-virtuoso';
-import useSelfStudentLite from "../../../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../../../hooks/me/useSelfStudentLite";
 import useInfiniteGroupMembers from "../../../hooks/group/useInfiniteGroupMembers";
 
 type GroupMembersPageProps = {

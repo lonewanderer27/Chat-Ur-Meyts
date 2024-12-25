@@ -26,7 +26,7 @@ import { hideTabBar } from "../../../utils/TabBar";
 import useGroupMembers from "../../../hooks/group/useGroupMembers";
 import client from "../../../client";
 import { personCircleOutline } from "ionicons/icons";
-import useSelfStudentLite from "../../../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../../../hooks/me/useSelfStudentLite";
 import useAmIAMember from "../../../hooks/group/useAmIAMember";
 import GroupPreview from "../GroupPreview";
 

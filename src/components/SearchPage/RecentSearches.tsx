@@ -5,7 +5,7 @@ import RecentSearchItem from './RecentSearchItem';
 import { SearchHistoryType } from '../../types'
 import useSelfStudent from '../../hooks/student';
 import RecentSearchItemLoader from '../../loaders/RecentSearchItemLoader';
-import useSelfStudentLite from '../../hooks/student/useSelfStudentLite';
+import useSelfStudentLite from '../../hooks/me/useSelfStudentLite';
 
 const RecentSearches = (props: {
   searchHistory?: SearchHistoryType[];

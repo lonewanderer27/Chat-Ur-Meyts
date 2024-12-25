@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import RecommendService from '../../services/recommend';
-import useSelfStudentLite from '../student/useSelfStudentLite';
+import useSelfStudentLite from '../me/useSelfStudentLite';
 
 const useRecommendGroups = () => {
   const { profile } = useSelfStudentLite();

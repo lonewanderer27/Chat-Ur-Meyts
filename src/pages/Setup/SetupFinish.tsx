@@ -24,7 +24,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 // @ts-ignore
 import StudentLoading from "../../assets/studentLoading.lottie";
 import useRecommendRealGroups from "../../hooks/recommend/useRecommendRealGroups";
-import useSelfDraftStudent from "../../hooks/student/useSelfDraftStudent";
+import useSelfDraftStudent from "../../hooks/me/useSelfDraftStudent";
 import useSelfSetupDraftStudent from "../../hooks/setup/useSelfSetupDraftStudent";
 
 enum FinishPageState {

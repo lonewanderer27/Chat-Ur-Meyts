@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
-import useSelfStudentLite from '../student/useSelfStudentLite'
+import useSelfStudentLite from '../me/useSelfStudentLite'
 import client from '../../client';
 
 const useMeGroupMember = (group_vanity_id: string) => {

@@ -26,10 +26,8 @@ import { hideTabBar } from "../../utils/TabBar";
 import { Controller } from "react-hook-form";
 import AvatarLarge from "../../components/Me/AvatarLarge";
 import { RouteComponentProps } from "react-router";
-import StudentItem from "../../components/SearchPage/StudentItem";
-import useSelfStudent from "../../hooks/student";
 import useUpdateInfo from "../../hooks/me/useUpdateInfo";
-import useSelfStudentLite from "../../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../../hooks/me/useSelfStudentLite";
 
 const MeUpdate: FC<RouteComponentProps> = ({ match }) => {
   const { student } = useSelfStudentLite();
@@ -57,7 +55,6 @@ const MeUpdate: FC<RouteComponentProps> = ({ match }) => {
                 text={""}
               />
             </IonButtons>
-            <IonTitle>Update Your Profile</IonTitle>
             <IonButtons slot="end">
               <IonButton
                 disabled={saving}
@@ -73,7 +70,7 @@ const MeUpdate: FC<RouteComponentProps> = ({ match }) => {
           </IonToolbar>
         </IonHeader>
         <div className="flex justify-center mb-[-80px] z-[500]">
-          <AvatarLarge avatarUrl={student?.avatar_url} />
+          <AvatarLarge avatarUrl={student?.avatar_url}   />
         </div>
         <IonCard className="pt-16 mx-0 z-[-500]">
           <IonCardContent>

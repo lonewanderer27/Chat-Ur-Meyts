@@ -14,7 +14,7 @@ import useAmIAMember from '../../hooks/group/useAmIAMember';
 import GroupPreview from './GroupPreview';
 import client from '../../client';
 import useMeGroupMember from '../../hooks/group/useMeGroupMember';
-import useSelfStudentLite from '../../hooks/student/useSelfStudentLite';
+import useSelfStudentLite from '../../hooks/me/useSelfStudentLite';
 
 const validationSchema = object().shape({
   title: string().optional().min(3).max(255),

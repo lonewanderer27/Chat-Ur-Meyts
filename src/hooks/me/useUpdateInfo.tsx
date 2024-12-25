@@ -5,7 +5,7 @@ import client from "../../client";
 import { qClient } from "../../App";
 import {useIonAlert, useIonRouter} from "@ionic/react";
 import {useState} from "react";
-import useSelfStudentLite from "../student/useSelfStudentLite";
+import useSelfStudentLite from "./useSelfStudentLite";
 
 export default function useUpdateInfo() {
   const rt = useIonRouter();

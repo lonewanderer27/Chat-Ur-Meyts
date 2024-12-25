@@ -56,7 +56,7 @@ import { NEW_STUDENT } from "../../constants/student";
 import GenerateAbbreviatedDays from "../../utils/GenerateAbbreviatedDays";
 import useSetup from "../../hooks/setup/useSetup";
 import useSetupDraftStudent from "../../hooks/setup/useSetupDraftStudent";
-import useSelfDraftStudent from "../../hooks/student/useSelfDraftStudent";
+import useSelfDraftStudent from "../../hooks/me/useSelfDraftStudent";
 import useSelfSetupDraftStudent from "../../hooks/setup/useSelfSetupDraftStudent";
 
 // Define the specific subset of strings

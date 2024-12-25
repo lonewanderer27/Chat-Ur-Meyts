@@ -1,4 +1,4 @@
-import useSelfDraftStudent from '../student/useSelfDraftStudent'
+import useSelfDraftStudent from '../me/useSelfDraftStudent'
 import { useQuery } from '@tanstack/react-query';
 import client from '../../client';
 

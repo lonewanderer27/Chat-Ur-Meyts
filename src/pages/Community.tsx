@@ -4,7 +4,7 @@ import { notificationsOutline, searchOutline, personCircleOutline } from 'ionico
 import NavBtn from '../components/NavBtn'
 import Sidebar from '../components/Sidebar'
 import useHideTabs from '../hooks/useHideTabs'
-import useSelfStudentLite from '../hooks/student/useSelfStudentLite'
+import useSelfStudentLite from '../hooks/me/useSelfStudentLite'
 
 export default function Community() {
   const { student } = useSelfStudentLite();

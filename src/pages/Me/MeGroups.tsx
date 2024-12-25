@@ -16,7 +16,7 @@ import { FC, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
 import { Virtuoso } from "react-virtuoso";
 import useSelfInfiniteGroups from "../../hooks/me/useSelfInfiniteGroups";
-import useSelfGroups from "../../hooks/student/useSelfGroups";
+import useSelfGroups from "../../hooks/me/useSelfGroups";
 
 const MeGroups: FC<RouteComponentProps> = () => {
   const { count } = useSelfGroups();

@@ -25,13 +25,13 @@ import {
 import { FC, useEffect, useRef } from "react";
 import AvatarLarge from "../components/Me/AvatarLarge";
 import { RouteComponentProps } from "react-router";
-import useSelfStudentLite from "../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../hooks/me/useSelfStudentLite";
 import useSession from "../hooks/auth/useSession";
 import { add, addCircleOutline, addOutline, colorWandOutline, pencilOutline, pencilSharp } from "ionicons/icons";
-import useSelfGroups from "../hooks/student/useSelfGroups";
-import useSelfFollowing from "../hooks/student/useSelfFollowing";
-import useSelfHobbies from "../hooks/student/useSelfHobbies";
-import useSelfSubjects from "../hooks/student/useSelfSubjects";
+import useSelfGroups from "../hooks/me/useSelfGroups";
+import useSelfFollowing from "../hooks/me/useSelfFollowing";
+import useSelfHobbies from "../hooks/me/useSelfHobbies";
+import useSelfSubjects from "../hooks/me/useSelfSubjects";
 import string from "string";
 import MeLoaderCard from "../components/Me/MeLoaderCard";
 import { hideTabBar } from "../utils/TabBar";

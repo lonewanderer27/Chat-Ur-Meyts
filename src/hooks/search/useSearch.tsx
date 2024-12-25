@@ -1,6 +1,6 @@
 import client from "../../client";
 import useSession from "../auth/useSession";
-import useSelfStudentLite from "../student/useSelfStudentLite";
+import useSelfStudentLite from "../me/useSelfStudentLite";
 
 export default function useSearch() {
   const { student } = useSelfStudentLite();

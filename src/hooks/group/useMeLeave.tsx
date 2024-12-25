@@ -1,6 +1,6 @@
 import useAmIAMember from './useAmIAMember'
 import client from '../../client';
-import useSelfStudentLite from '../student/useSelfStudentLite';
+import useSelfStudentLite from '../me/useSelfStudentLite';
 import { useState } from 'react';
 import { useIonRouter } from '@ionic/react';
 

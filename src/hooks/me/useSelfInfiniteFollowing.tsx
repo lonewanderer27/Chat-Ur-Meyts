@@ -1,4 +1,4 @@
-import useSelfStudentLite from "../student/useSelfStudentLite";
+import useSelfStudentLite from "./useSelfStudentLite";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import client from "../../client";
 

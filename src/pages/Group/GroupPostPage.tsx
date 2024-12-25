@@ -55,7 +55,7 @@ import { useQuery } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Share } from "@capacitor/share";
 import { Capacitor } from "@capacitor/core";
-import useSelfStudentLite from "../../hooks/student/useSelfStudentLite";
+import useSelfStudentLite from "../../hooks/me/useSelfStudentLite";
 
 type GroupPostPageParams = {
   vanity_url: string;

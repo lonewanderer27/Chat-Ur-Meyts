@@ -64,6 +64,7 @@ export default function Continue() {
       <IonContent className="ion-padding">
         <video
           className="fixed z-[-10] top-0 left-0 min-w-full min-h-full w-auto h-auto transform object-cover"
+          poster="/480-poster.jpg"
           autoPlay
           muted
           loop

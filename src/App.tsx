@@ -36,27 +36,24 @@ import { IonReactRouter } from "@ionic/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { lazy, Suspense } from "react";
 import { Route, Redirect } from "react-router";
+import { isPlatform } from '@ionic/react';
 import AuthWrapper from "./components/Auth/AuthWrapper";
 import DefaultFallback from "./fallbacks";
 import TabIconChangerWrapper from "./TabIconChangerWrapper";
 import useDraggableFab from "./hooks/useDraggableFab";
 import { accessibilitySharp, chatboxEllipsesOutline, chatboxOutline, compassOutline, compassSharp, peopleOutline, peopleSharp } from "ionicons/icons";
-import AccessibilitySettings from "./components/AccessibilitySettings";
-import { isPlatform } from '@ionic/react';
+const AccessibilitySettings = lazy(() => import("./components/AccessibilitySettings"));
+const Inbox = lazy(() => import("./pages/Inbox"));
+const NotFound = lazy(() => import("./routes/NotFound"));
 import DiscoverRoute from "./routes/DiscoverRoute";
-const ContinueRoute = lazy(() => import("./routes/ContinueRoute"));
-const CommunityRoute = lazy(() => import("./routes/CommunityRoute"));
-const ThreadsRoute = lazy(() => import("./routes/ThreadsRoute"));
-// const SetupRoute = lazy(() => import("./routes/SetupRoute"));
+import ContinueRoute from "./routes/ContinueRoute";
+import CommunityRoute from "./routes/CommunityRoute";
+import ThreadsRoute from "./routes/ThreadsRoute";
 import SetupRoute from "./routes/SetupRoute";
-const SurveysRoute = lazy(() => import("./routes/SurveysRoute"));
 import RecommendRoute from "./routes/RecommendRoute";
 import MeRoute from "./routes/MeRoute";
 import StudentRoute from "./routes/StudentRoute";
 import GroupRoute from "./routes/GroupRoute";
-// const RecommendRoute = lazy(() => import("./routes/RecommendRoute"));
-const Inbox = lazy(() => import("./pages/Inbox"));
-const NotFound = lazy(() => import("./routes/NotFound"));
 
 setupIonicReact({
   mode: "ios",
@@ -82,77 +79,76 @@ const App = () => {
   const { fabRef } = useDraggableFab();
   return (
     <QueryClientProvider client={qClient}>
-      <Suspense fallback={<DefaultFallback />}>
-        <IonApp>
-          <IonReactRouter>
-            <IonTabs>
-              <IonRouterOutlet>
-                <TabIconChangerWrapper>
-                  <AuthWrapper>
-                    <Route path="/discover" component={DiscoverRoute} />
-                    <Route path="/community" component={CommunityRoute} />
-                    <Route path="/threads" component={ThreadsRoute} />
-                    <Route path="/me" component={MeRoute} />
-                    <Route path="/group" component={GroupRoute} />
-                    <Route path="/student" component={StudentRoute} />
-                    <Route path="/setup" component={SetupRoute} />
-                    <Route path="/surveys" component={SurveysRoute} />
-                    <Route path="/recommend" component={RecommendRoute} />
-                    <Route path="/inbox" component={Inbox} />
-                    <Route path="/undefined" component={() => <Redirect to="/discover" />} exact />
-                    <Route path="/null" component={() => <Redirect to="/discover" />} exact />
-                    <Route
-                      path="/"
-                      component={() => <Redirect to="/discover" />}
-                      exact
-                    />
-                  </AuthWrapper>
-                  <Route path="/continue" component={ContinueRoute} />
-                  {/* <Route render={() => <Redirect to="/not-found" />} /> */}
-                  <Route path="/not-found" component={NotFound} />
-                  <Route path="/terms-of-service" component={NotFound} />
-                  <Route path="/privacy-policy" component={NotFound} />
-                </TabIconChangerWrapper>
-              </IonRouterOutlet>
-              <IonTabBar slot="bottom" translucent>
-                <IonTabButton tab="discover" href="/discover">
-                  <IonIcon
-                    id="discoverTabButton"
-                    aria-hidden="true"
-                    icon={
-                      location.pathname === "/discover"
-                        ? compassSharp
-                        : compassOutline
-                    }
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <TabIconChangerWrapper>
+                <AuthWrapper>
+                  <Route path="/discover" component={DiscoverRoute} />
+                  <Route path="/community" component={CommunityRoute} />
+                  <Route path="/threads" component={ThreadsRoute} />
+                  <Route path="/me" component={MeRoute} />
+                  <Route path="/group" component={GroupRoute} />
+                  <Route path="/student" component={StudentRoute} />
+                  <Route path="/setup" component={SetupRoute} />
+                  <Route path="/recommend" component={RecommendRoute} />
+                  <Route path="/inbox" component={Inbox} />
+                  <Route path="/undefined" component={() => <Redirect to="/discover" />} exact />
+                  <Route path="/null" component={() => <Redirect to="/discover" />} exact />
+                  <Route
+                    path="/"
+                    component={() => <Redirect to="/discover" />}
+                    exact
                   />
-                  <IonLabel>Discover</IonLabel>
-                </IonTabButton>
-                <IonTabButton tab="community" href="/community">
-                  <IonIcon
-                    id="communityTabButton"
-                    aria-hidden="true"
-                    icon={
-                      location.pathname === "/community"
-                        ? peopleSharp
-                        : peopleOutline
-                    }
-                  />
-                  <IonLabel>Community</IonLabel>
-                </IonTabButton>
-                <IonTabButton tab="threads" href="/threads">
-                  <IonIcon
-                    id="threadsTabButton"
-                    aria-hidden="true"
-                    icon={
-                      location.pathname === "/threads"
-                        ? chatboxEllipsesOutline
-                        : chatboxOutline
-                    }
-                  />
-                  <IonLabel>Threads</IonLabel>
-                </IonTabButton>
-              </IonTabBar>
-            </IonTabs>
+                </AuthWrapper>
+                <Route path="/continue" component={ContinueRoute} />
+                {/* <Route render={() => <Redirect to="/not-found" />} /> */}
+                <Route path="/not-found" component={NotFound} />
+                <Route path="/terms-of-service" component={NotFound} />
+                <Route path="/privacy-policy" component={NotFound} />
+              </TabIconChangerWrapper>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom" translucent>
+              <IonTabButton tab="discover" href="/discover">
+                <IonIcon
+                  id="discoverTabButton"
+                  aria-hidden="true"
+                  icon={
+                    location.pathname === "/discover"
+                      ? compassSharp
+                      : compassOutline
+                  }
+                />
+                <IonLabel>Discover</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="community" href="/community">
+                <IonIcon
+                  id="communityTabButton"
+                  aria-hidden="true"
+                  icon={
+                    location.pathname === "/community"
+                      ? peopleSharp
+                      : peopleOutline
+                  }
+                />
+                <IonLabel>Community</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="threads" href="/threads">
+                <IonIcon
+                  id="threadsTabButton"
+                  aria-hidden="true"
+                  icon={
+                    location.pathname === "/threads"
+                      ? chatboxEllipsesOutline
+                      : chatboxOutline
+                  }
+                />
+                <IonLabel>Threads</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+          <Suspense>
             <IonFab
               ref={fabRef}
               style={{ marginBottom: 60 }}
@@ -167,9 +163,9 @@ const App = () => {
               </IonFabButton>
             </IonFab>
             <AccessibilitySettings />
-          </IonReactRouter>
-        </IonApp>
-      </Suspense>
+          </Suspense>
+        </IonReactRouter>
+      </IonApp>
     </QueryClientProvider>
   );
 };

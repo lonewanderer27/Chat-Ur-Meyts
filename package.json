@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
@@ -24,6 +24,7 @@
     "@capacitor/preferences": "^6.0.1",
     "@capacitor/share": "^6.0.1",
     "@capacitor/status-bar": "^6.0.0",
+    "@capawesome/capacitor-file-picker": "^6.2.0",
     "@fontsource/poppins": "^5.0.14",
     "@hookform/resolvers": "^3.3.4",
     "@ionic/react": "^8.0.0",
@@ -95,6 +96,7 @@
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
     "vite": "^5.0.0",
+    "vite-bundle-visualizer": "^1.2.1",
     "vite-plugin-pwa": "^0.20.1",
     "vitest": "^0.34.6"
   },

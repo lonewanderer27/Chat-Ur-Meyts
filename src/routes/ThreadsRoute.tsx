@@ -1,15 +1,17 @@
 import { IonRouterOutlet } from '@ionic/react'
-import React from 'react'
-import Threads from '../pages/Threads'
+import React, { Suspense } from 'react'
 import { Route, RouteComponentProps } from 'react-router'
-import FeatureUnavailable from './FeatureUnavailable'
+const FeatureUnavailable = React.lazy(() => import('./FeatureUnavailable'))
+import DefaultFallback from '../fallbacks'
 
 const ThreadsRoute: React.FC<RouteComponentProps> = ({ match }) => {
   console.log(match);
 
   return (
     <IonRouterOutlet id="threads">
-      <Route path={match.url} component={FeatureUnavailable} exact />
+      <Suspense fallback={<DefaultFallback />}>
+        <Route path={match.url} component={FeatureUnavailable} exact />
+      </Suspense>
     </IonRouterOutlet>
   )
 }

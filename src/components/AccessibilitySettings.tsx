@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import {
   IonModal,
   IonContent,
@@ -11,7 +11,7 @@ import {
   IonToggle,
   IonIcon
 } from '@ionic/react';
-import { useToggleTheme } from '../hooks/useToggleTheme'; 
+import { useToggleTheme } from '../hooks/useToggleTheme';
 import { closeOutline } from 'ionicons/icons';
 
 const AccessibilitySettings: FC = () => {
@@ -24,6 +24,15 @@ const AccessibilitySettings: FC = () => {
     modal.current?.dismiss();
   };
 
+  useEffect(() => {
+    // For DaisyUI
+    if (darkMode) {
+      document.documentElement.dataset.theme = 'dark';
+    } else {
+      document.documentElement.dataset.theme = 'light';
+    }
+  }, [darkMode])
+
   return (
     <IonModal initialBreakpoint={0.3} breakpoints={[0, 0.3]} id="settings-modal" ref={modal} trigger="open-modal">
       <IonContent>
@@ -31,7 +40,7 @@ const AccessibilitySettings: FC = () => {
           <IonTitle className='mt-1'>Accessibility</IonTitle>
           <IonButtons slot="end">
             <IonButton color="dark" onClick={() => dismiss()}>
-              <IonIcon src={closeOutline}/>
+              <IonIcon src={closeOutline} />
             </IonButton>
           </IonButtons>
         </IonToolbar>
